@@ -20,7 +20,7 @@ export default async function TimelinePage() {
               <p className="display text-3xl text-gold-600">{e.date_label || e.year}</p>
               {e.era && <p className="mt-1 text-[0.65rem] font-semibold tracking-[0.18em] uppercase text-navy-700">{e.era}</p>}
               <h2 className="display mt-2 text-2xl text-navy-900">{e.title}</h2>
-              {e.description && <p className="mt-2 text-ink/80">{e.description}</p>}
+              {e.description && <p className="mt-2 text-ink/90">{e.description}</p>}
               {e.image_url && <Image src={e.image_url} alt="" width={800} height={450} className="mt-4 h-auto w-full max-w-lg" />}
               {e.source_url && (
                 <a href={e.source_url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-navy-700 hover:text-gold-700">

@@ -13,7 +13,7 @@ export default async function ConsortiumPage() {
     <>
       <PageHero eyebrow="The Consortium" title={s.consortium_title || "Progress Requires Collaboration."} summary={s.consortium_body} />
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-        <p className="max-w-3xl text-lg text-ink/80">
+        <p className="max-w-3xl text-lg text-ink/90">
           <strong className="text-navy-900">{s.tagline}</strong> is our mission framework. The seven focus areas below are the subjects and organizations our network brings together.
         </p>
         <ol className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -27,8 +27,8 @@ export default async function ConsortiumPage() {
                     <span className="display text-3xl text-line">{String(i + 1).padStart(2, "0")}</span>
                   </div>
                   <h2 className="display mt-4 text-2xl text-navy-900">{a.title}</h2>
-                  <p className="mt-1 text-xs font-semibold tracking-[0.12em] uppercase text-gold-700">{a.eyebrow}</p>
-                  <p className="mt-3 text-sm text-muted">{a.summary}</p>
+                  <p className="mt-1 text-xs font-bold tracking-[0.12em] uppercase text-gold-700">{a.eyebrow}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/90">{a.summary}</p>
                   <span className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 group-hover:text-gold-700">Explore <ArrowRight /></span>
                 </Link>
               </li>

@@ -69,7 +69,7 @@ export default async function AreaPage({ params }: Props) {
         <aside className="space-y-6 lg:sticky lg:top-28 lg:self-start">
           <div className="bg-navy-900 p-6 text-white on-dark">
             <p className="eyebrow">Get Involved</p>
-            <p className="mt-3 text-sm text-white/80">Is your organization working in this area? Connect with the consortium.</p>
+            <p className="mt-3 text-sm text-white/90">Is your organization working in this area? Connect with the consortium.</p>
             <Link href="/contact?type=join" className="btn btn-gold mt-5 w-full justify-center">Join the Consortium</Link>
           </div>
           <div className="border-l-2 border-gold-500 bg-white p-5 text-xs leading-relaxed text-muted">

@@ -41,7 +41,7 @@ export default function Gallery({ images, title }: { images: string[]; title: st
             <>
               <button type="button" onClick={(e) => { e.stopPropagation(); step(-1); }} aria-label="Previous photo" className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 px-4 py-3 text-2xl text-white hover:bg-white/20 sm:left-6">‹</button>
               <button type="button" onClick={(e) => { e.stopPropagation(); step(1); }} aria-label="Next photo" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 px-4 py-3 text-2xl text-white hover:bg-white/20 sm:right-6">›</button>
-              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/70">{open + 1} / {images.length}</p>
+              <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white/85">{open + 1} / {images.length}</p>
             </>
           )}
         </div>

@@ -21,7 +21,7 @@ export default async function StoryPage({ params }: Props) {
     <article>
       <header className="on-dark neural-bg text-white">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
-          <Link href="/why-veterans#stories" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/70 hover:text-gold-300">← All veteran stories</Link>
+          <Link href="/why-veterans#stories" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85 hover:text-gold-300">← All veteran stories</Link>
           <p className="eyebrow mt-5">Veteran Story</p>
           <h1 className="display mt-2 text-[2.1rem] leading-[1.1] sm:text-5xl">{s.name}</h1>
           {s.service && <p className="mt-2 text-sm font-semibold tracking-[0.1em] uppercase text-gold-300">{s.service}</p>}

@@ -9,10 +9,10 @@ export default async function StoriesSection() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
         <p className="eyebrow">In Their Words</p>
         <h2 id="stories-h" className="display mt-2 text-3xl text-navy-900 sm:text-4xl">Veteran Stories</h2>
-        <p className="mt-3 max-w-2xl text-ink/80">Veterans who have undergone ibogaine treatment share their experiences, in their own words.</p>
+        <p className="mt-3 max-w-2xl text-ink/90">Veterans who have undergone ibogaine treatment share their experiences, in their own words.</p>
         <div className="mt-6">
           {stories.length ? <StoriesCarousel stories={stories} /> : (
-            <p className="bg-white p-6 text-ink/80 ring-1 ring-line">Stories are coming soon.</p>
+            <p className="bg-white p-6 text-ink/90 ring-1 ring-line">Stories are coming soon.</p>
           )}
         </div>
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

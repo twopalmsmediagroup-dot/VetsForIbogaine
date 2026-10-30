@@ -22,7 +22,7 @@ export default async function PartnersPage() {
             <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{partners.map((o) => <li key={o.id}><OrgCard o={o} /></li>)}</ul>
           ) : (
             <div className="mt-6 bg-white p-6 ring-1 ring-line">
-              <p className="text-ink/80">Founding partners will be announced soon.</p>
+              <p className="text-ink/90">Founding partners will be announced soon.</p>
               <Link href="/contact?type=partner" className="btn btn-outline mt-5">Become a Partner</Link>
             </div>
           )}

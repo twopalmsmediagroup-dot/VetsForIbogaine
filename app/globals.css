@@ -14,7 +14,7 @@
   --color-paper: #f8f4ec;
   --color-paper-2: #f1ebdf;
   --color-ink: #13213a;
-  --color-muted: #4a5568;
+  --color-muted: #344054;
   --color-line: #e3dacb;
 
   --font-display: var(--font-caslon), "Georgia", serif;
@@ -36,10 +36,10 @@ body {
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-gold-600);
+    color: var(--color-gold-700);
   }
   .on-dark .eyebrow, .eyebrow.on-dark { color: var(--color-gold-400); }
 
@@ -71,7 +71,7 @@ body {
 
 @layer components {
   /* Long-form content */
-  .prose-vfi { font-size: 1.02rem; line-height: 1.65; color: #24324a; }
+  .prose-vfi { font-size: 1.02rem; line-height: 1.65; color: #17233a; font-weight: 430; }
   @media (min-width: 640px) { .prose-vfi { font-size: 1.07rem; line-height: 1.7; } }
   .prose-vfi > * + * { margin-top: 0.9em; }
   .prose-vfi > :first-child { margin-top: 0 !important; }

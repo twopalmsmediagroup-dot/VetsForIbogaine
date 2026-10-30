@@ -38,10 +38,10 @@ export default async function ArticlePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <header className="on-dark neural-bg text-white">
         <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-14">
-          <Link href="/news" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/70 hover:text-gold-300">← All articles</Link>
+          <Link href="/news" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85 hover:text-gold-300">← All articles</Link>
           <p className="eyebrow mt-6">{ARTICLE_TYPE_LABELS[a.article_type]}</p>
           <h1 className="display mt-3 text-4xl sm:text-5xl">{a.title}</h1>
-          {a.excerpt && <p className="mt-5 text-lg text-white/80">{a.excerpt}</p>}
+          {a.excerpt && <p className="mt-5 text-lg text-white/90">{a.excerpt}</p>}
           <p className="mt-6 text-sm text-white/60">{[a.author, formatDate(a.published_at)].filter(Boolean).join(" · ")}</p>
         </div>
       </header>

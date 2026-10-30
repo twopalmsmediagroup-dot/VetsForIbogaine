@@ -119,7 +119,7 @@ export default function InquiryForm({ defaultType = "general" }: { defaultType?:
             <textarea id="i-bio" name="short_bio" value={bio} onChange={(e) => setBio(e.target.value)} rows={7} maxLength={1500}
               placeholder="Who you are, your service, and what your experience with ibogaine was like — in your own words." className={field} />
           </div>
-          <label className="flex items-start gap-3 text-sm text-ink/85 sm:col-span-2">
+          <label className="flex items-start gap-3 text-sm text-ink/90 sm:col-span-2">
             <input type="checkbox" name="consent_share" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[#0b1d36]" />
             <span>I give Vets for Ibogaine permission to publish my name, photo and story on its website. I confirm this is my own experience and that I own or have rights to this photo. I understand stories are reviewed before posting and I can ask for mine to be removed at any time.</span>
           </label>

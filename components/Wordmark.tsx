@@ -10,7 +10,7 @@ export default function Wordmark({ dark = false, tagline }: { dark?: boolean; ta
           <span className={dark ? "text-white" : "text-navy-900"}>VETS FOR </span>
           <span className="gold-text">IBOGAINE</span>
         </span>
-        <span className={`mt-1.5 text-[0.44rem] font-semibold tracking-[0.14em] min-[360px]:text-[0.48rem] min-[360px]:tracking-[0.16em] min-[400px]:text-[0.5rem] min-[400px]:tracking-[0.2em] uppercase sm:text-[0.55rem] ${dark ? "text-white/70" : "text-navy-700"}`}>
+        <span className={`mt-1.5 text-[0.44rem] font-semibold tracking-[0.14em] min-[360px]:text-[0.48rem] min-[360px]:tracking-[0.16em] min-[400px]:text-[0.5rem] min-[400px]:tracking-[0.2em] uppercase sm:text-[0.55rem] ${dark ? "text-white/85" : "text-navy-700"}`}>
           {tagline || "Advocacy • Collaboration • Education"}
         </span>
       </span>

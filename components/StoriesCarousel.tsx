@@ -39,7 +39,7 @@ export default function StoriesCarousel({ stories }: { stories: VeteranStory[] }
               </div>
               <div className="flex flex-1 flex-col p-5">
                 {s.quote && <p className="display text-lg leading-snug text-gold-700">“{s.quote.replace(/^["“]|["”]$/g, "")}”</p>}
-                {s.short_bio && <p className={`text-sm leading-relaxed text-ink/80 ${s.quote ? "mt-3" : ""}`}>{s.short_bio}</p>}
+                {s.short_bio && <p className={`text-sm leading-relaxed text-ink/90 ${s.quote ? "mt-3" : ""}`}>{s.short_bio}</p>}
                 {s.full_story && (
                   <Link href={`/stories/${s.slug}`} className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 hover:text-gold-700">
                     Read full story →<span className="sr-only"> from {s.name}</span>

@@ -72,7 +72,7 @@ export default async function Home() {
         <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:mr-0 lg:py-14 lg:pr-14 lg:pl-8">
           <p className="eyebrow">The Mission</p>
           <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.mission_title}</h2>
-          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:text-lg">{s.mission_body}</p>
+          <p className="mt-5 text-base leading-relaxed text-ink/90 sm:text-lg">{s.mission_body}</p>
           <div className="mt-6"><Link href="/why-veterans" className="btn btn-gold">Why Veterans? <ArrowRight /></Link></div>
         </div>
         <Visual src={s.mission_image_url} className="lg:min-h-[400px]" />
@@ -84,7 +84,7 @@ export default async function Home() {
         <div className="order-1 mx-auto flex max-w-2xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:order-2 lg:ml-0 lg:py-14 lg:pl-14 lg:pr-8">
           <p className="eyebrow">About Ibogaine</p>
           <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.about_title}</h2>
-          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:text-lg">{s.about_body}</p>
+          <p className="mt-5 text-base leading-relaxed text-ink/90 sm:text-lg">{s.about_body}</p>
           <p className="mt-4 border-l-2 border-gold-500 pl-4 text-sm text-muted">Ibogaine is a Schedule I substance in the U.S. and is not FDA-approved. This information is educational, not medical advice.</p>
           <div className="mt-6"><Link href="/about-ibogaine" className="btn btn-gold">Learn About Ibogaine <ArrowRight /></Link></div>
         </div>
@@ -96,7 +96,7 @@ export default async function Home() {
           <div className="flex flex-col justify-center">
             <p className="eyebrow">The Consortium</p>
             <h2 id="consortium-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl sm:text-5xl">{s.consortium_title}</h2>
-            <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">{s.consortium_body}</p>
+            <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">{s.consortium_body}</p>
             <div className="mt-6"><Link href="/consortium" className="btn btn-gold">Explore the Consortium <ArrowRight /></Link></div>
           </div>
           <ul className="grid grid-cols-2 gap-px bg-white/10 ring-1 ring-white/10 md:grid-cols-4">
@@ -105,9 +105,9 @@ export default async function Home() {
               return (
                 <li key={a.id} className="bg-navy-900">
                   <Link href={`/consortium/${a.slug}`} className="group flex h-full flex-col items-center px-3 py-7 text-center transition hover:bg-navy-800">
-                    <Icon className="text-gold-400 transition group-hover:scale-110" />
-                    <span className="mt-3 text-[0.72rem] font-bold tracking-[0.14em] uppercase">{a.title}</span>
-                    <span className="mt-1.5 text-xs text-white/65">{a.eyebrow}</span>
+                    <Icon className="text-gold-300 transition group-hover:scale-110" />
+                    <span className="mt-3 text-[0.74rem] font-extrabold tracking-[0.14em] uppercase text-white">{a.title}</span>
+                    <span className="mt-1.5 text-[0.8rem] leading-snug font-medium text-white/90">{a.eyebrow}</span>
                   </Link>
                 </li>
               );
@@ -128,7 +128,7 @@ export default async function Home() {
             <div>
               <p className="eyebrow">Partners & Organizations</p>
               <h2 id="partners-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.partners_title}</h2>
-              <p className="mt-6 text-ink/80">{s.partners_body}</p>
+              <p className="mt-6 text-ink/90">{s.partners_body}</p>
               <div className="mt-6"><Link href="/partners" className="btn btn-gold">View Organizations <ArrowRight /></Link></div>
             </div>
             <ul className="grid gap-px self-center bg-line ring-1 ring-line sm:grid-cols-2">
@@ -149,7 +149,7 @@ export default async function Home() {
         <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:ml-0 lg:py-14 lg:pl-14 lg:pr-8">
           <p className="eyebrow">History & Timeline</p>
           <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.timeline_title}</h2>
-          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:text-lg">{s.timeline_body}</p>
+          <p className="mt-5 text-base leading-relaxed text-ink/90 sm:text-lg">{s.timeline_body}</p>
           <div className="mt-6"><Link href="/timeline" className="btn btn-gold">View the Timeline <ArrowRight /></Link></div>
         </div>
       </section>
@@ -160,7 +160,7 @@ export default async function Home() {
           <div>
             <p className="eyebrow">News & Articles</p>
             <h2 id="news-heading" className="display mt-2 text-3xl text-navy-900">{s.news_title}</h2>
-            {s.news_body && <p className="mt-2 text-ink/75">{s.news_body}</p>}
+            {s.news_body && <p className="mt-2 text-ink/90">{s.news_body}</p>}
           </div>
           <Link href="/news?type=media_coverage" className="btn btn-gold shrink-0">In the News <ArrowRight /></Link>
         </div>
@@ -172,7 +172,7 @@ export default async function Home() {
           <div>
             <p className="eyebrow">Stay Informed</p>
             <h2 className="display mt-2 text-3xl">{s.newsletter_title}</h2>
-            <p className="mt-2 text-sm text-white/70">{s.newsletter_body}</p>
+            <p className="mt-2 text-sm text-white/85">{s.newsletter_body}</p>
           </div>
           <NewsletterForm />
         </div>
