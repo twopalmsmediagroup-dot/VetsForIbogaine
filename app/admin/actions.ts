@@ -71,11 +71,18 @@ export async function saveSettings(formData: FormData) {
 }
 
 export async function signIn(formData: FormData) {
-  const email = String(formData.get("email") || "").trim();
+  const email = String(formData.get("email") || "").trim().toLowerCase();
   const password = String(formData.get("password") || "");
   const supabase = await serverClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) redirect(`/admin/login?error=${enc("Incorrect email or password.")}`);
+  if (error) {
+    console.error("[admin sign-in]", error.status, error.code, error.message);
+    const msg =
+      error.code === "invalid_credentials" ? "Incorrect email or password. Passwords are case-sensitive — check that your browser didn't autofill a different saved password."
+      : error.code === "email_not_confirmed" ? "This account hasn't been confirmed yet. In Supabase, open the user and confirm the email."
+      : `Sign-in failed: ${error.message}`;
+    redirect(`/admin/login?error=${enc(msg)}`);
+  }
   redirect("/admin");
 }
 
