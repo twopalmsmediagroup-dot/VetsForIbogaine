@@ -4,6 +4,8 @@ import { getPage } from "@/lib/data";
 import Markdown from "@/components/Markdown";
 import PageHero from "@/components/PageHero";
 import Visual from "@/components/Visual";
+import Gallery from "@/components/Gallery";
+import Image from "next/image";
 
 export const revalidate = 300;
 type Props = { params: Promise<{ slug: string }> };
@@ -26,6 +28,32 @@ export default async function GenericPage({ params }: Props) {
       </article>
     );
   }
+  const gallery = (p.gallery ?? []).filter(Boolean);
+  const galleryBlock = gallery.length > 0 && (
+    <section aria-labelledby="gallery-h" className="mx-auto max-w-6xl px-4 pb-12 sm:px-6">
+      <h2 id="gallery-h" className="eyebrow mb-4">Photos</h2>
+      <Gallery images={gallery} title={p.title} />
+    </section>
+  );
+
+  // Profile layout (About Us): portrait beside the bio.
+  if (p.slug === "about-us") {
+    return (
+      <>
+        <PageHero eyebrow={p.eyebrow} title={p.title} summary={p.summary} />
+        <div className={`mx-auto grid gap-8 px-4 py-8 sm:px-6 sm:py-10 ${p.hero_image_url ? "max-w-6xl md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-12" : "max-w-3xl"}`}>
+          {p.hero_image_url && (
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-navy-900 md:sticky md:top-28 md:self-start">
+              <Image src={p.hero_image_url} alt={`Portrait — ${p.title}`} fill priority sizes="(min-width:768px) 40vw, 100vw" className="object-cover" />
+            </div>
+          )}
+          <article className="min-w-0"><Markdown>{p.body}</Markdown></article>
+        </div>
+        {galleryBlock}
+      </>
+    );
+  }
+
   return (
     <>
       <PageHero eyebrow={p.eyebrow} title={p.title} summary={p.summary} />
@@ -33,6 +61,7 @@ export default async function GenericPage({ params }: Props) {
       <article className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10">
         <Markdown>{p.body}</Markdown>
       </article>
+      {galleryBlock}
     </>
   );
 }

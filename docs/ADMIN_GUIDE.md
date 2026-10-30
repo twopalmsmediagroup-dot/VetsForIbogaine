@@ -57,6 +57,13 @@ Photo tips: landscape, at least 1600 px wide, under 10 MB. Use photos you own or
 ### Edit a consortium focus area
 **Pages & Focus Areas** → click the area (e.g. *Clinical Safety*). Edit the summary or page content. Its articles, resources and organizations are pulled in automatically from items tagged with that area.
 
+### Update the About Us page (bio and photos)
+1. **Pages & Focus Areas → About Us**.
+2. **Page content**: write or paste your bio. Use the toolbar for headings and bold.
+3. **Header image / portrait**: upload one portrait. It appears beside your bio.
+4. **Photo gallery**: click **Upload photos** and select several at once. Use the ← → arrows to reorder and **Remove** to delete. Visitors can tap any photo to enlarge it.
+5. Click **Save**. The page is linked as **About Us** in the website footer.
+
 ### Add a timeline milestone
 **Timeline → + Add timeline entry**. Enter the **Year** (used for ordering) and optionally a **Date as displayed** like “January 2024”. Add a source link whenever possible.
 

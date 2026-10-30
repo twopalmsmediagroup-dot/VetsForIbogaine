@@ -1,4 +1,4 @@
-export type FieldType = "text" | "textarea" | "markdown" | "select" | "image" | "date" | "checkbox" | "number" | "url" | "slug" | "area";
+export type FieldType = "text" | "textarea" | "markdown" | "select" | "image" | "date" | "checkbox" | "number" | "url" | "slug" | "area" | "gallery";
 
 export type Field = {
   name: string;
@@ -152,7 +152,8 @@ export const ENTITIES: Record<string, Entity> = {
       ] },
       { name: "summary", label: "Summary", type: "textarea", wide: true, help: "Shown under the page title and on cards." },
       { name: "body", label: "Page content", type: "markdown", wide: true },
-      { name: "hero_image_url", label: "Header image (optional)", type: "image", wide: true },
+      { name: "hero_image_url", label: "Header image / portrait (optional)", type: "image", wide: true, help: "On the About Us page this is the portrait shown beside the bio." },
+      { name: "gallery", label: "Photo gallery (optional)", type: "gallery", wide: true, help: "Shown as a photo grid below the page content." },
       SORT,
       { name: "slug", label: "Web address", type: "slug", help: "Changing this changes the page's link." },
       { name: "seo_title", label: "Search engine title", type: "text" },

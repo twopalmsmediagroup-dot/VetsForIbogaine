@@ -3,7 +3,7 @@ export type Status = "draft" | "published";
 export type Page = {
   id: string; slug: string; kind: "page" | "consortium_area" | "legal"; title: string;
   eyebrow: string | null; summary: string | null; body: string | null; hero_image_url: string | null;
-  icon: string | null; sort_order: number; status: Status; seo_title: string | null; seo_description: string | null;
+  icon: string | null; gallery: string[] | null; sort_order: number; status: Status; seo_title: string | null; seo_description: string | null;
 };
 
 export type Article = {

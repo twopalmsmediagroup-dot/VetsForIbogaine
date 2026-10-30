@@ -12,6 +12,7 @@ function coerce(f: Field, fd: FormData): unknown {
     case "checkbox": return raw === "on";
     case "number": { const n = Number(raw); return raw === null || raw === "" || Number.isNaN(n) ? (f.defaultValue ?? null) : Math.trunc(n); }
     case "date": return raw ? String(raw) : null;
+    case "gallery": return fd.getAll(f.name).map((v) => String(v).trim()).filter((v) => /^https:\/\//.test(v));
     default: { const v = String(raw ?? "").trim(); return v === "" ? null : v; }
   }
 }

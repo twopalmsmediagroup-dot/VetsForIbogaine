@@ -1,6 +1,7 @@
 import type { Field } from "@/lib/admin/entities";
 import ImageUpload from "./ImageUpload";
 import MarkdownEditor from "./MarkdownEditor";
+import GalleryUpload from "./GalleryUpload";
 
 const input = "w-full rounded border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/20";
 
@@ -11,6 +12,8 @@ export default function FieldInput({ f, value, areas, folder }: { f: Field; valu
   switch (f.type) {
     case "textarea":
       control = <textarea id={id} name={f.name} defaultValue={String(v)} rows={3} className={input} />; break;
+    case "gallery":
+      control = <GalleryUpload name={f.name} defaultValue={Array.isArray(value) ? (value as string[]) : []} folder={folder} />; break;
     case "markdown":
       control = <MarkdownEditor name={f.name} defaultValue={String(v)} />; break;
     case "image":
@@ -51,7 +54,7 @@ export default function FieldInput({ f, value, areas, folder }: { f: Field; valu
       control = <input id={id} name={f.name} defaultValue={String(v)} className={input} required={f.required} />;
   }
   return (
-    <div className={f.wide || f.type === "markdown" || f.type === "image" ? "sm:col-span-2" : ""}>
+    <div className={f.wide || f.type === "markdown" || f.type === "image" || f.type === "gallery" ? "sm:col-span-2" : ""}>
       <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-slate-800">{f.label}{f.required && <span className="text-red-700"> *</span>}</label>
       {control}
       {f.help && <p className="mt-1.5 text-xs text-slate-500">{f.help}</p>}

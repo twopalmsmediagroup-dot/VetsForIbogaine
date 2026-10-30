@@ -10,7 +10,7 @@ const SOCIAL: { key: string; label: string; path: string }[] = [
 ];
 
 const COLS = [
-  { title: "Explore", links: [["About Ibogaine", "/about-ibogaine"], ["Why Veterans", "/why-veterans"], ["Research", "/consortium/scientific-research"], ["Consortium", "/consortium"], ["Partners & Organizations", "/partners"], ["Timeline", "/timeline"], ["News & Articles", "/news"], ["Resources", "/resources"]] },
+  { title: "Explore", links: [["About Us", "/about-us"], ["About Ibogaine", "/about-ibogaine"], ["Why Veterans", "/why-veterans"], ["Research", "/consortium/scientific-research"], ["Consortium", "/consortium"], ["Partners & Organizations", "/partners"], ["Timeline", "/timeline"], ["News & Articles", "/news"], ["Resources", "/resources"]] },
   { title: "Get Involved", links: [["Join the Consortium", "/contact?type=join"], ["Partner With Us", "/contact?type=partner"], ["Media Inquiries", "/contact?type=media"], ["Contact", "/contact"]] },
   { title: "Legal", links: [["Medical Disclaimer", "/medical-disclaimer"], ["Privacy Policy", "/privacy"], ["Terms of Use", "/terms"], ["Accessibility", "/accessibility"]] },
 ];
