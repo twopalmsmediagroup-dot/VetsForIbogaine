@@ -14,13 +14,13 @@ export default async function ResourcesPage() {
   return (
     <>
       <PageHero eyebrow="Resources" title="Evidence & Resources" summary="Peer-reviewed studies, reports, guides and policy documents, organized by focus area." />
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-10">
         {byArea.map(({ area, items }) => (
-          <section key={area.slug} className="mb-10" aria-labelledby={`r-${area.slug}`}>
+          <section key={area.slug} className="mb-8" aria-labelledby={`r-${area.slug}`}>
             <h2 id={`r-${area.slug}`} className="display text-3xl text-navy-900">{area.title}</h2>
-            <ul className="mt-5 divide-y divide-line border-y border-line">
+            <ul className="mt-3 divide-y divide-line border-y border-line">
               {items.map((r) => (
-                <li key={r.id} className="py-5">
+                <li key={r.id} className="py-4">
                   <p className="eyebrow !text-[0.62rem]">{r.resource_type}{r.published_date ? ` · ${formatDate(r.published_date)}` : ""}</p>
                   <h3 className="mt-1 text-lg font-semibold text-navy-900">
                     {r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-gold-700">{r.title} <External /></a> : r.title}

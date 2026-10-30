@@ -19,7 +19,7 @@ export default async function NewsPage({ searchParams }: Props) {
   return (
     <>
       <PageHero eyebrow="Article Library" title={s.news_title || "Research, Policy and Reporting."} summary={s.news_body} />
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <nav aria-label="Filter by type" className="flex flex-wrap gap-2">
           <Link href={href(undefined, sp.area)} className={chip(!type)}>All</Link>
           {Object.entries(ARTICLE_TYPE_LABELS).map(([k, v]) => <Link key={k} href={href(k, sp.area)} className={chip(type === k)}>{v}</Link>)}
@@ -29,9 +29,9 @@ export default async function NewsPage({ searchParams }: Props) {
           {areas.map((a) => <Link key={a.slug} href={href(type, a.slug)} className={chip(sp.area === a.slug)}>{a.title}</Link>)}
         </nav>
         {articles.length ? (
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{articles.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}</ul>
+          <ul className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{articles.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}</ul>
         ) : (
-          <p className="mt-12 text-muted">No articles match these filters yet.</p>
+          <p className="mt-8 text-muted">No articles match these filters yet.</p>
         )}
       </section>
     </>

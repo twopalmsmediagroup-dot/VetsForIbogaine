@@ -26,16 +26,16 @@ export default async function AreaPage({ params }: Props) {
   return (
     <>
       <PageHero eyebrow="Consortium Focus Area" title={p.title} summary={p.summary} />
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_320px] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:gap-12 lg:grid-cols-[1fr_320px] lg:px-8">
         <div className="min-w-0">
           <Markdown>{p.body}</Markdown>
 
           {resources.length > 0 && (
-            <section className="mt-10" aria-labelledby="res-h">
+            <section className="mt-8" aria-labelledby="res-h">
               <h2 id="res-h" className="display text-3xl text-navy-900">Research & Resources</h2>
-              <ul className="mt-6 divide-y divide-line border-y border-line">
+              <ul className="mt-3 divide-y divide-line border-y border-line">
                 {resources.map((r) => (
-                  <li key={r.id} className="py-5">
+                  <li key={r.id} className="py-4">
                     <p className="eyebrow !text-[0.62rem]">{r.resource_type}{r.published_date ? ` · ${formatDate(r.published_date)}` : ""}</p>
                     <h3 className="mt-1 text-lg font-semibold text-navy-900">
                       {r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-gold-700">{r.title} <External /></a> : r.title}
@@ -49,18 +49,18 @@ export default async function AreaPage({ params }: Props) {
           )}
 
           {articles.length > 0 && (
-            <section className="mt-10" aria-labelledby="art-h">
+            <section className="mt-8" aria-labelledby="art-h">
               <h2 id="art-h" className="display text-3xl text-navy-900">Articles & Coverage</h2>
-              <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+              <ul className="mt-4 grid gap-6 sm:grid-cols-2">
                 {articles.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}
               </ul>
             </section>
           )}
 
           {orgs.length > 0 && (
-            <section className="mt-10" aria-labelledby="org-h">
+            <section className="mt-8" aria-labelledby="org-h">
               <h2 id="org-h" className="display text-3xl text-navy-900">Organizations</h2>
-              <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+              <ul className="mt-4 grid gap-6 sm:grid-cols-2">
                 {orgs.map((o) => <li key={o.id}><OrgCard o={o} /></li>)}
               </ul>
             </section>

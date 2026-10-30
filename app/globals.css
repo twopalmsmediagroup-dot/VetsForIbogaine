@@ -71,15 +71,19 @@ body {
 
 @layer components {
   /* Long-form content */
-  .prose-vfi { font-size: 1.07rem; line-height: 1.75; color: #24324a; }
-  .prose-vfi > * + * { margin-top: 1.1em; }
-  .prose-vfi h2 { font-family: var(--font-display); font-size: 1.85rem; line-height: 1.2; color: var(--color-navy-900); margin-top: 1.8em; }
-  .prose-vfi h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--color-navy-900); margin-top: 1.5em; }
+  .prose-vfi { font-size: 1.02rem; line-height: 1.65; color: #24324a; }
+  @media (min-width: 640px) { .prose-vfi { font-size: 1.07rem; line-height: 1.7; } }
+  .prose-vfi > * + * { margin-top: 0.9em; }
+  .prose-vfi > :first-child { margin-top: 0 !important; }
+  .prose-vfi h2 { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.15; color: var(--color-navy-900); margin-top: 1.4em; }
+  @media (min-width: 640px) { .prose-vfi h2 { font-size: 1.85rem; } }
+  .prose-vfi h2 + *, .prose-vfi h3 + * { margin-top: 0.5em; }
+  .prose-vfi h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-navy-900); margin-top: 1.2em; }
   .prose-vfi a { color: var(--color-navy-700); text-decoration: underline; text-decoration-color: var(--color-gold-500); text-underline-offset: 3px; word-break: break-word; }
   .prose-vfi a:hover { color: var(--color-gold-700); }
   .prose-vfi ul { list-style: disc; padding-left: 1.4em; }
   .prose-vfi ol { list-style: decimal; padding-left: 1.4em; }
-  .prose-vfi li + li { margin-top: .4em; }
+  .prose-vfi li + li { margin-top: .3em; }
   .prose-vfi blockquote { border-left: 3px solid var(--color-gold-500); padding: .6em 1.2em; background: var(--color-paper-2); font-style: normal; }
   .prose-vfi strong { color: var(--color-navy-900); }
   .prose-vfi img { border-radius: 2px; }

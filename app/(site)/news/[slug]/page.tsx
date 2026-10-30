@@ -37,7 +37,7 @@ export default async function ArticlePage({ params }: Props) {
     <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <header className="on-dark neural-bg text-white">
-        <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 md:py-20">
+        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-14">
           <Link href="/news" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/70 hover:text-gold-300">← All articles</Link>
           <p className="eyebrow mt-6">{ARTICLE_TYPE_LABELS[a.article_type]}</p>
           <h1 className="display mt-3 text-4xl sm:text-5xl">{a.title}</h1>
@@ -50,18 +50,18 @@ export default async function ArticlePage({ params }: Props) {
           <Image src={a.cover_image_url} alt="" fill priority sizes="(min-width:1024px) 1024px, 100vw" className="object-cover" />
         </div>
       )}
-      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10">
         <Markdown>{a.body}</Markdown>
         {a.source_url && (
-          <p className="mt-8 text-sm">Originally published by <a href={a.source_url} target="_blank" rel="noopener noreferrer" className="font-semibold text-navy-700 underline">{a.source_name || "the source"}</a>.</p>
+          <p className="mt-6 text-sm">Originally published by <a href={a.source_url} target="_blank" rel="noopener noreferrer" className="font-semibold text-navy-700 underline">{a.source_name || "the source"}</a>.</p>
         )}
         {a.references_md && (
-          <section className="mt-12 border-t border-line pt-8" aria-labelledby="refs">
+          <section className="mt-8 border-t border-line pt-6" aria-labelledby="refs">
             <h2 id="refs" className="text-sm font-bold tracking-[0.14em] uppercase text-navy-900">References</h2>
             <Markdown className="mt-4 !text-sm">{a.references_md}</Markdown>
           </section>
         )}
-        <p className="mt-12 border-l-2 border-gold-500 bg-white p-5 text-xs leading-relaxed text-muted">
+        <p className="mt-8 border-l-2 border-gold-500 bg-white p-5 text-xs leading-relaxed text-muted">
           This article is for educational purposes only and is not medical advice. {s.disclaimer_short} <Link href="/medical-disclaimer" className="underline">Medical disclaimer</Link>.
         </p>
       </div>
