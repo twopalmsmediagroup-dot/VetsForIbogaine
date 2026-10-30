@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { serverClient } from "@/lib/supabase/server";
 import { ENTITIES } from "@/lib/admin/entities";
 import Notice from "@/components/admin/Notice";
+import { fetchMissingThumbnails } from "../../actions";
 
 type Props = { params: Promise<{ entity: string }>; searchParams: Promise<Record<string, string>> };
 
@@ -30,7 +31,14 @@ export default async function EntityList({ params, searchParams }: Props) {
           <h1 className="text-2xl font-bold">{e.label}</h1>
           <p className="mt-1 text-sm text-slate-600">{e.description}</p>
         </div>
-        <Link href={`/admin/${key}/new`} className="rounded bg-[#0b1d36] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#12294a]">+ Add {e.singular.toLowerCase()}</Link>
+        <div className="flex flex-wrap gap-2">
+          {key === "articles" && (
+            <form action={fetchMissingThumbnails}>
+              <button className="rounded bg-white px-4 py-2.5 text-sm font-semibold ring-1 ring-slate-300 hover:bg-slate-50">Fetch missing thumbnails</button>
+            </form>
+          )}
+          <Link href={`/admin/${key}/new`} className="rounded bg-[#0b1d36] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#12294a]">+ Add {e.singular.toLowerCase()}</Link>
+        </div>
       </div>
       <div className="mt-6"><Notice sp={sp} /></div>
       <form className="mb-4 flex flex-wrap gap-2">

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { serverClient, getStaffUser } from "@/lib/supabase/server";
 import { ENTITIES, SETTINGS_GROUPS, slugify, type Field } from "@/lib/admin/entities";
+import { importPreviewImage } from "@/lib/og";
 
 function coerce(f: Field, fd: FormData): unknown {
   const raw = fd.get(f.name);
@@ -36,6 +37,10 @@ export async function saveEntity(entityKey: string, id: string | null, formData:
   for (const f of entity.fields) if (f.type === "url" && row[f.name] && !/^https?:\/\//i.test(String(row[f.name]))) row[f.name] = `https://${row[f.name]}`;
 
   const supabase = await serverClient();
+  // Outside coverage with no cover image: pull in the publisher's preview image.
+  if (entityKey === "articles" && row.source_url && !row.cover_image_url) {
+    row.cover_image_url = await importPreviewImage(supabase, String(row.source_url));
+  }
   const res = id
     ? await supabase.from(entity.table).update(row).eq("id", id).select("id").single()
     : await supabase.from(entity.table).insert(row).select("id").single();
@@ -146,4 +151,23 @@ export async function removeTeamMember(email: string) {
   await supabase.from("admin_allowlist").delete().eq("email", email);
   await supabase.from("profiles").update({ role: "viewer" }).eq("email", email);
   revalidatePath("/admin/team");
+}
+
+export async function fetchMissingThumbnails() {
+  await requireStaff();
+  const supabase = await serverClient();
+  const { data } = await supabase.from("articles").select("id, source_url").not("source_url", "is", null).is("cover_image_url", null).limit(25);
+  let added = 0;
+  for (const a of data ?? []) {
+    const url = await importPreviewImage(supabase, a.source_url as string);
+    if (url) {
+      const { error } = await supabase.from("articles").update({ cover_image_url: url }).eq("id", a.id);
+      if (!error) added++;
+    }
+  }
+  revalidatePath("/", "layout");
+  const total = data?.length ?? 0;
+  const msg = total === 0 ? "Every article with a source link already has a thumbnail."
+    : `Added ${added} of ${total} thumbnail${total === 1 ? "" : "s"}.${added < total ? " Some sites don't provide a preview image — upload one manually for those." : ""}`;
+  redirect(`/admin/articles?info=${encodeURIComponent(msg)}`);
 }

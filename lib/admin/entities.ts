@@ -52,7 +52,7 @@ export const ENTITIES: Record<string, Entity> = {
       AREA,
       { name: "featured", label: "Feature on homepage", type: "checkbox" },
       { name: "excerpt", label: "Short summary", type: "textarea", wide: true, help: "One or two sentences shown on cards and in search results." },
-      { name: "cover_image_url", label: "Cover image", type: "image", wide: true },
+      { name: "cover_image_url", label: "Cover image", type: "image", wide: true, help: "For “In the News”, leave this empty and the publisher's preview image is added automatically when you save." },
       { name: "body", label: "Article text", type: "markdown", wide: true, help: "Leave empty for “In the News” links." },
       { name: "author", label: "Author", type: "text" },
       { name: "source_name", label: "Source name", type: "text", help: "e.g. Reuters, Stanford Medicine" },

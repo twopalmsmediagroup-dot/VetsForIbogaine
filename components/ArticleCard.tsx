@@ -17,8 +17,12 @@ export default function ArticleCard({ a }: { a: Article }) {
         {a.cover_image_url ? (
           <Image src={a.cover_image_url} alt="" fill sizes="(min-width:1024px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.03]" />
         ) : (
-          <div className="neural-bg flex h-full items-end p-5">
-            <span className="display text-2xl leading-tight text-white/90">{label}</span>
+          <div className="neural-bg relative h-full" aria-hidden="true">
+            <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#c6a052" strokeWidth="0.6">
+              <path d="M-20 190 C 80 160, 120 90, 210 100 S 340 40, 420 25" />
+              <path d="M-20 215 C 90 185, 150 135, 230 140 S 350 85, 420 75" opacity=".55" />
+              <circle cx="210" cy="100" r="2" fill="#e2c98a" stroke="none" />
+            </svg>
           </div>
         )}
       </div>
