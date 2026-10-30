@@ -1,15 +1,19 @@
-import { serverClient } from "@/lib/supabase/server";
+import { serverClient, getStaffUser } from "@/lib/supabase/server";
 import ConfirmButton from "@/components/admin/ConfirmButton";
+import Notice from "@/components/admin/Notice";
 import { createStoryFromInquiry, deleteInquiry, setInquiryHandled } from "../../actions";
 
 const TYPES: Record<string, string> = { join: "Join the consortium", partner: "Partnership", media: "Media", story: "Veteran story", general: "General" };
 
-export default async function Inbox() {
+export default async function Inbox({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
+  const sp = await searchParams;
   const sb = await serverClient();
-  const [{ data: inquiries }, { data: subs }] = await Promise.all([
+  const [{ data: inquiries }, { data: subs, count: subCount }, me] = await Promise.all([
     sb.from("inquiries").select("*").order("handled").order("created_at", { ascending: false }).limit(200),
-    sb.from("subscribers").select("email, created_at").order("created_at", { ascending: false }).limit(2000),
+    sb.from("subscribers").select("email, created_at", { count: "exact" }).order("created_at", { ascending: false }).limit(100),
+    getStaffUser(),
   ]);
+  const isAdmin = me?.role === "admin";
   // Private story photos: short-lived signed links for staff viewing.
   const photoPaths = (inquiries ?? []).map((i) => i.photo_path).filter(Boolean) as string[];
   const signed: Record<string, string> = {};
@@ -17,10 +21,10 @@ export default async function Inbox() {
     const { data } = await sb.storage.from("submissions").createSignedUrls(photoPaths, 3600);
     for (const d of data ?? []) if (d.path && d.signedUrl) signed[d.path] = d.signedUrl;
   }
-  const csv = "data:text/csv;charset=utf-8," + encodeURIComponent("email,subscribed\n" + (subs ?? []).map((s) => `${s.email},${s.created_at}`).join("\n"));
   return (
     <div className="mx-auto max-w-5xl">
       <h1 className="text-2xl font-bold">Inbox & Subscribers</h1>
+      <div className="mt-6"><Notice sp={sp} /></div>
       <h2 className="mt-8 text-lg font-bold">Messages</h2>
       <ul className="mt-3 space-y-3">
         {(inquiries ?? []).map((i) => (
@@ -60,7 +64,7 @@ export default async function Inbox() {
                   <button className="rounded bg-[#0b1d36] px-3 py-1.5 text-sm font-semibold text-white hover:bg-[#12294a]">Create draft story</button>
                 </form>
               )}
-              <form action={deleteInquiry.bind(null, i.id)}><ConfirmButton confirmLabel="Confirm delete" /></form>
+              {isAdmin && <form action={deleteInquiry.bind(null, i.id)}><ConfirmButton confirmLabel="Confirm delete" /></form>}
             </div>
           </li>
         ))}
@@ -68,12 +72,12 @@ export default async function Inbox() {
       </ul>
 
       <div className="mt-12 flex items-center justify-between">
-        <h2 className="text-lg font-bold">Newsletter subscribers ({subs?.length ?? 0})</h2>
-        {!!subs?.length && <a href={csv} download="vfi-subscribers.csv" className="rounded bg-white px-3 py-2 text-sm font-medium ring-1 ring-slate-300">Download CSV</a>}
+        <h2 className="text-lg font-bold">Newsletter subscribers ({subCount ?? 0})</h2>
+        {!!subCount && <a href="/admin/subscribers.csv" download className="rounded bg-white px-3 py-2 text-sm font-medium ring-1 ring-slate-300">Download CSV</a>}
       </div>
-      <p className="mt-1 text-sm text-slate-500">Import this list into your email tool (e.g. Mailchimp) to send updates.</p>
+      <p className="mt-1 text-sm text-slate-500">Import this list into your email tool (e.g. Mailchimp) to send updates.{(subCount ?? 0) > 100 ? " Showing the 100 most recent — the CSV has everyone." : ""}</p>
       <ul className="mt-3 divide-y divide-slate-100 rounded-lg bg-white text-sm ring-1 ring-slate-200">
-        {(subs ?? []).slice(0, 100).map((s) => <li key={s.email} className="flex justify-between px-4 py-2"><span>{s.email}</span><span className="text-slate-500">{new Date(s.created_at).toLocaleDateString()}</span></li>)}
+        {(subs ?? []).map((s) => <li key={s.email} className="flex justify-between px-4 py-2"><span>{s.email}</span><span className="text-slate-500">{new Date(s.created_at).toLocaleDateString()}</span></li>)}
       </ul>
     </div>
   );

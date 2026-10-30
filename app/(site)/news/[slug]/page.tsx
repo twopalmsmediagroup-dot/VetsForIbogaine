@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { ARTICLE_TYPE_LABELS, SITE_URL, formatDate, getArticle, getSettings } from "@/lib/data";
+import { isExternalArticle } from "@/lib/articles";
 import Markdown from "@/components/Markdown";
 
 export const revalidate = 300;
@@ -22,7 +23,7 @@ export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const a = await getArticle(slug);
   if (!a) notFound();
-  if (a.article_type === "media_coverage" && a.source_url && !a.body) redirect(a.source_url);
+  if (isExternalArticle(a)) redirect(a.source_url!);
   const s = await getSettings();
 
   const jsonLd = {

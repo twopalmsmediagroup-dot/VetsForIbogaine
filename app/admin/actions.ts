@@ -23,6 +23,12 @@ async function requireStaff() {
   return user;
 }
 
+async function requireAdmin(back: string) {
+  const user = await requireStaff();
+  if (user.role !== "admin") redirect(`${back}?error=${enc("Only administrators can do that.")}`);
+  return user;
+}
+
 function enc(s: string) { return encodeURIComponent(s); }
 
 export async function saveEntity(entityKey: string, id: string | null, formData: FormData) {
@@ -34,6 +40,9 @@ export async function saveEntity(entityKey: string, id: string | null, formData:
 
   const title = String(row[entity.titleField] ?? "");
   if (!title) redirect(`/admin/${entityKey}/${id ?? "new"}?error=${enc(`${entity.fields.find((f) => f.name === entity.titleField)?.label} is required.`)}`);
+  if (entityKey === "articles" && row.article_type === "media_coverage" && !row.source_url && !row.body) {
+    redirect(`/admin/${entityKey}/${id ?? "new"}?error=${enc("“In the News” items need a Source link (or article text).")}`);
+  }
   if ("slug" in row) row.slug = slugify(String(row.slug || title)) || `item-${Date.now()}`;
   for (const f of entity.fields) if (f.type === "url" && row[f.name] && !/^https?:\/\//i.test(String(row[f.name]))) row[f.name] = `https://${row[f.name]}`;
 
@@ -123,36 +132,42 @@ export async function updatePassword(formData: FormData) {
 export async function setInquiryHandled(id: string, handled: boolean) {
   await requireStaff();
   const supabase = await serverClient();
-  await supabase.from("inquiries").update({ handled }).eq("id", id);
+  const { error } = await supabase.from("inquiries").update({ handled }).eq("id", id);
+  if (error) redirect(`/admin/inbox?error=${enc(error.message)}`);
   revalidatePath("/admin/inbox");
 }
 
 export async function deleteInquiry(id: string) {
-  await requireStaff();
+  await requireAdmin("/admin/inbox");
   const supabase = await serverClient();
-  await supabase.from("inquiries").delete().eq("id", id);
+  const { error, count } = await supabase.from("inquiries").delete({ count: "exact" }).eq("id", id);
+  if (error || !count) redirect(`/admin/inbox?error=${enc(error?.message || "That message couldn't be deleted.")}`);
   revalidatePath("/admin/inbox");
 }
 
 export async function addTeamMember(formData: FormData) {
+  await requireAdmin("/admin/team");
   const email = String(formData.get("email") || "").trim().toLowerCase();
   const role = formData.get("role") === "admin" ? "admin" : "editor";
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) redirect(`/admin/team?error=${enc("Enter a valid email.")}`);
   const supabase = await serverClient();
   const { error } = await supabase.from("admin_allowlist").upsert({ email, role });
-  if (error) redirect(`/admin/team?error=${enc("Only administrators can manage the team.")}`);
+  if (error) redirect(`/admin/team?error=${enc(error.message)}`);
   // If they already have an account, apply the role now.
-  await supabase.from("profiles").update({ role }).eq("email", email);
+  const { error: pErr } = await supabase.from("profiles").update({ role }).eq("email", email);
+  if (pErr) redirect(`/admin/team?error=${enc(pErr.message)}`);
   revalidatePath("/admin/team");
   redirect("/admin/team?saved=1");
 }
 
 export async function removeTeamMember(email: string) {
-  const me = await requireStaff();
+  const me = await requireAdmin("/admin/team");
   if (me.email?.toLowerCase() === email.toLowerCase()) redirect(`/admin/team?error=${enc("You can't remove yourself.")}`);
   const supabase = await serverClient();
-  await supabase.from("admin_allowlist").delete().eq("email", email);
-  await supabase.from("profiles").update({ role: "viewer" }).eq("email", email);
+  const { error } = await supabase.from("admin_allowlist").delete().eq("email", email);
+  if (error) redirect(`/admin/team?error=${enc(error.message)}`);
+  const { error: pErr } = await supabase.from("profiles").update({ role: "viewer" }).eq("email", email);
+  if (pErr) redirect(`/admin/team?error=${enc(pErr.message)}`);
   revalidatePath("/admin/team");
 }
 

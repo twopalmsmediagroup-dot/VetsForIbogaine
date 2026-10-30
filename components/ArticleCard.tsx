@@ -2,14 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Article } from "@/lib/types";
 import { ARTICLE_TYPE_LABELS, formatDate } from "@/lib/data";
+import { articleHref, isExternalArticle } from "@/lib/articles";
 import { External } from "./Icons";
 
-export function articleHref(a: Article) {
-  return a.article_type === "media_coverage" && a.source_url ? a.source_url : `/news/${a.slug}`;
-}
-
 export default function ArticleCard({ a }: { a: Article }) {
-  const external = a.article_type === "media_coverage" && !!a.source_url;
+  const external = isExternalArticle(a);
   const label = external ? a.source_name || "In the News" : ARTICLE_TYPE_LABELS[a.article_type];
   return (
     <article className="group relative flex h-full flex-col bg-white shadow-[0_1px_0_rgba(0,0,0,0.04)] ring-1 ring-line/60 transition hover:-translate-y-0.5 hover:shadow-lg">

@@ -1,3 +1,5 @@
+import { articleHref } from "@/lib/articles";
+
 export type FieldType = "text" | "textarea" | "markdown" | "select" | "image" | "date" | "checkbox" | "number" | "url" | "slug" | "area" | "gallery";
 
 export type Field = {
@@ -38,7 +40,7 @@ export const ENTITIES: Record<string, Entity> = {
     titleField: "title",
     order: [{ column: "published_at", ascending: false }],
     columns: [{ name: "article_type", label: "Type" }, { name: "published_at", label: "Date" }],
-    publicPath: (r) => (r.article_type === "media_coverage" && !r.body ? (r.source_url as string) : `/news/${r.slug}`),
+    publicPath: (r) => articleHref(r),
     fields: [
       { name: "title", label: "Headline", type: "text", required: true, wide: true },
       { name: "article_type", label: "Type", type: "select", defaultValue: "editorial", options: [
