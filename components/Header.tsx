@@ -27,15 +27,15 @@ export default function Header({ tagline }: { tagline?: string | null }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Wordmark tagline={tagline} />
+        <div className="min-w-0 shrink-0"><Wordmark tagline={tagline} /></div>
         <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex items-center gap-6">
-            {NAV.map((n) => (
+          <ul className="flex items-center gap-5 2xl:gap-6">
+            {NAV.filter((n) => n.href !== "/").map((n) => (
               <li key={n.href}>
                 <Link
                   href={n.href}
                   aria-current={isActive(n.href) ? "page" : undefined}
-                  className={`relative py-2 text-[0.7rem] font-semibold tracking-[0.12em] uppercase transition-colors ${
+                  className={`relative py-2 text-[0.7rem] font-semibold whitespace-nowrap tracking-[0.12em] uppercase transition-colors ${
                     isActive(n.href) ? "text-gold-600 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-gold-500" : "text-navy-900 hover:text-gold-600"
                   }`}
                 >
@@ -45,9 +45,9 @@ export default function Header({ tagline }: { tagline?: string | null }) {
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="/contact?type=join" className="btn btn-gold hidden !px-4 !py-2.5 sm:inline-flex">
-            Join the Consortium <ArrowRight />
+        <div className="flex shrink-0 items-center gap-3">
+          <Link href="/contact?type=join" className="btn btn-gold hidden !px-4 !py-2.5 whitespace-nowrap sm:inline-flex">
+            Join<span className="xl:hidden 2xl:inline"> the Consortium</span> <ArrowRight />
           </Link>
           <button
             type="button"

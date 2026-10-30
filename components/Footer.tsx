@@ -18,8 +18,8 @@ const COLS = [
 export default function Footer({ s }: { s: Settings }) {
   return (
     <footer className="on-dark bg-navy-950 text-white/80">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr_auto] lg:px-8">
-        <div>
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 sm:grid-cols-3 sm:px-6 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr_auto] lg:px-8">
+        <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <Link href="/" className="flex items-center gap-3" aria-label="Vets for Ibogaine — home">
             <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-14 w-auto" />
             <span className="font-[family-name:var(--font-mark)] text-xl font-bold tracking-[0.04em]">
@@ -40,7 +40,8 @@ export default function Footer({ s }: { s: Settings }) {
             </ul>
           </nav>
         ))}
-        <div className="flex flex-col gap-5 lg:items-end">
+        {(SOCIAL.some((x) => s[x.key]) || s.donate_url) && (
+        <div className="col-span-2 flex flex-col gap-5 sm:col-span-3 lg:col-span-1 lg:items-end">
           <ul className="flex gap-4">
             {SOCIAL.filter((x) => s[x.key]).map((x) => (
               <li key={x.key}>
@@ -52,6 +53,7 @@ export default function Footer({ s }: { s: Settings }) {
           </ul>
           {s.donate_url && <a href={s.donate_url} className="btn btn-gold justify-center" target="_blank" rel="noopener noreferrer">Donate</a>}
         </div>
+        )}
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-white/60 sm:px-6 md:flex-row md:justify-between lg:px-8">

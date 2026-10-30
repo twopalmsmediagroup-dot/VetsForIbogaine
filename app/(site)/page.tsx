@@ -29,15 +29,15 @@ export default async function Home() {
           <Visual src={s.hero_image_url} priority className="h-full w-full" sizes="(min-width:1024px) 55vw, 100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950/10 lg:via-navy-950/20" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8 lg:py-32">
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
           <div className="max-w-xl">
             <p className="eyebrow">{s.hero_eyebrow}</p>
-            <h1 className="display mt-5 text-5xl sm:text-6xl lg:text-7xl">
+            <h1 className="display mt-4 text-[2.75rem] sm:mt-5 sm:text-6xl lg:text-7xl">
               {s.hero_title || "Veterans Deserve"}{" "}
               <em className="gold-text italic">{s.hero_highlight || "More Options."}</em>
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-white/85">{s.hero_body}</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <p className="mt-5 text-base leading-relaxed text-white/85 sm:mt-6 sm:text-lg">{s.hero_body}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
               <Link href="/about-ibogaine" className="btn btn-gold justify-center">Explore Ibogaine <ArrowRight /></Link>
               <Link href="/contact?type=join" className="btn btn-outline-light justify-center">Join the Consortium <ArrowRight /></Link>
             </div>
@@ -47,11 +47,11 @@ export default async function Home() {
 
       {/* ACE PILLARS */}
       <section aria-labelledby="ace-heading" className="border-b border-line bg-paper">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <h2 id="ace-heading" className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-navy-700">
             {s.support_message || "Connecting Organizations. Sharing Knowledge. Amplifying Veteran Voices."}
           </h2>
-          <ul className="mt-8 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
+          <ul className="mt-8 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line">
             {pillarOrder.map((p) => {
               const { icon: Icon, key } = PILLARS[p];
               return (
@@ -70,22 +70,22 @@ export default async function Home() {
 
       {/* MISSION */}
       <section className="grid bg-paper lg:grid-cols-2">
-        <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-16 sm:px-6 lg:mr-0 lg:py-24 lg:pr-16 lg:pl-8">
+        <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-12 sm:px-6 sm:py-16 lg:mr-0 lg:py-24 lg:pr-16 lg:pl-8">
           <p className="eyebrow">The Mission</p>
-          <h2 className="display mt-3 text-4xl text-navy-900 sm:text-5xl">{s.mission_title}</h2>
-          <p className="mt-6 text-lg leading-relaxed text-ink/85">{s.mission_body}</p>
+          <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.mission_title}</h2>
+          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:mt-6 sm:text-lg">{s.mission_body}</p>
           <div className="mt-8"><Link href="/why-veterans" className="btn btn-gold">Why Veterans? <ArrowRight /></Link></div>
         </div>
-        <Visual src={s.mission_image_url} className="min-h-[320px] lg:min-h-[520px]" />
+        <Visual src={s.mission_image_url} className="min-h-[220px] sm:min-h-[320px] lg:min-h-[520px]" />
       </section>
 
       {/* ABOUT IBOGAINE */}
       <section className="grid bg-paper-2 lg:grid-cols-2">
-        <Visual src={s.about_image_url} className="order-2 min-h-[320px] lg:order-1 lg:min-h-[520px]" />
-        <div className="order-1 mx-auto flex max-w-2xl flex-col justify-center px-4 py-16 sm:px-6 lg:order-2 lg:ml-0 lg:py-24 lg:pl-16 lg:pr-8">
+        <Visual src={s.about_image_url} className="order-2 min-h-[220px] sm:min-h-[320px] lg:order-1 lg:min-h-[520px]" />
+        <div className="order-1 mx-auto flex max-w-2xl flex-col justify-center px-4 py-12 sm:px-6 sm:py-16 lg:order-2 lg:ml-0 lg:py-24 lg:pl-16 lg:pr-8">
           <p className="eyebrow">About Ibogaine</p>
-          <h2 className="display mt-3 text-4xl text-navy-900 sm:text-5xl">{s.about_title}</h2>
-          <p className="mt-6 text-lg leading-relaxed text-ink/85">{s.about_body}</p>
+          <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.about_title}</h2>
+          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:mt-6 sm:text-lg">{s.about_body}</p>
           <p className="mt-4 border-l-2 border-gold-500 pl-4 text-sm text-muted">Ibogaine is a Schedule I substance in the U.S. and is not FDA-approved. This information is educational, not medical advice.</p>
           <div className="mt-8"><Link href="/about-ibogaine" className="btn btn-gold">Learn About Ibogaine <ArrowRight /></Link></div>
         </div>
@@ -93,18 +93,18 @@ export default async function Home() {
 
       {/* CONSORTIUM */}
       <section className="on-dark bg-navy-900 text-white" aria-labelledby="consortium-heading">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div className="flex flex-col justify-center">
             <p className="eyebrow">The Consortium</p>
-            <h2 id="consortium-heading" className="display mt-3 text-4xl sm:text-5xl">{s.consortium_title}</h2>
-            <p className="mt-6 text-lg leading-relaxed text-white/80">{s.consortium_body}</p>
+            <h2 id="consortium-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl sm:text-5xl">{s.consortium_title}</h2>
+            <p className="mt-5 text-base leading-relaxed text-white/80 sm:mt-6 sm:text-lg">{s.consortium_body}</p>
             <div className="mt-8"><Link href="/consortium" className="btn btn-gold">Explore the Consortium <ArrowRight /></Link></div>
           </div>
-          <ul className="grid grid-cols-2 gap-px bg-white/10 ring-1 ring-white/10 sm:grid-cols-3 md:grid-cols-4">
-            {areas.map((a, i) => {
+          <ul className="grid grid-cols-2 gap-px bg-white/10 ring-1 ring-white/10 md:grid-cols-4">
+            {areas.map((a) => {
               const Icon = AREA_ICONS[a.icon || "book"] || Book;
               return (
-                <li key={a.id} className={`bg-navy-900 ${i >= 4 && areas.length === 7 ? "md:col-span-1" : ""}`}>
+                <li key={a.id} className="bg-navy-900">
                   <Link href={`/consortium/${a.slug}`} className="group flex h-full flex-col items-center px-3 py-7 text-center transition hover:bg-navy-800">
                     <Icon className="text-gold-400 transition group-hover:scale-110" />
                     <span className="mt-3 text-[0.72rem] font-bold tracking-[0.14em] uppercase">{a.title}</span>
@@ -113,8 +113,8 @@ export default async function Home() {
                 </li>
               );
             })}
-            {areas.length % 4 !== 0 && (
-              <li className="hidden bg-navy-900 md:flex md:items-center md:justify-center md:p-4">
+            {areas.length % 2 !== 0 && (
+              <li className="flex items-center justify-center bg-navy-900 p-4">
                 <Link href="/consortium" className="text-xs font-semibold tracking-[0.14em] uppercase text-gold-400 hover:text-gold-300">All focus areas →</Link>
               </li>
             )}
@@ -125,10 +125,10 @@ export default async function Home() {
       {/* PARTNERS */}
       {orgs.length > 0 && (
         <section className="bg-paper" aria-labelledby="partners-heading">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
             <div>
               <p className="eyebrow">Partners & Organizations</p>
-              <h2 id="partners-heading" className="display mt-3 text-4xl text-navy-900 sm:text-5xl">{s.partners_title}</h2>
+              <h2 id="partners-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.partners_title}</h2>
               <p className="mt-6 text-ink/80">{s.partners_body}</p>
               <div className="mt-8"><Link href="/partners" className="btn btn-gold">View Organizations <ArrowRight /></Link></div>
             </div>
@@ -146,11 +146,11 @@ export default async function Home() {
 
       {/* TIMELINE */}
       <section className="grid bg-paper-2 lg:grid-cols-2">
-        <Visual src={s.timeline_image_url} className="min-h-[280px] lg:min-h-[420px]" />
-        <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-16 sm:px-6 lg:ml-0 lg:pl-16 lg:pr-8">
+        <Visual src={s.timeline_image_url} className="min-h-[200px] sm:min-h-[280px] lg:min-h-[420px]" />
+        <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-12 sm:px-6 sm:py-16 lg:ml-0 lg:pl-16 lg:pr-8">
           <p className="eyebrow">History & Timeline</p>
-          <h2 className="display mt-3 text-4xl text-navy-900 sm:text-5xl">{s.timeline_title}</h2>
-          <p className="mt-6 text-lg text-ink/85">{s.timeline_body}</p>
+          <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.timeline_title}</h2>
+          <p className="mt-5 text-base leading-relaxed text-ink/85 sm:mt-6 sm:text-lg">{s.timeline_body}</p>
           <div className="mt-8"><Link href="/timeline" className="btn btn-gold">View the Timeline <ArrowRight /></Link></div>
         </div>
       </section>
@@ -158,16 +158,16 @@ export default async function Home() {
       {/* NEWS */}
       {news.length > 0 && (
         <section className="bg-paper" aria-labelledby="news-heading">
-          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="eyebrow">In the News</p>
-                <h2 id="news-heading" className="display mt-3 text-4xl text-navy-900">{s.news_title}</h2>
+                <h2 id="news-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900">{s.news_title}</h2>
                 <p className="mt-3 text-ink/75">{s.news_body}</p>
               </div>
               <Link href="/news" className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase text-gold-700 hover:text-navy-900">View All <ArrowRight /></Link>
             </div>
-            <ul className="mt-10 grid gap-6 md:grid-cols-3">
+            <ul className="mt-8 grid gap-6 sm:mt-10 md:grid-cols-3">
               {news.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}
             </ul>
           </div>
@@ -176,7 +176,7 @@ export default async function Home() {
 
       {/* NEWSLETTER */}
       <section className="on-dark bg-navy-900 text-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 sm:py-14 lg:grid-cols-2 lg:items-center lg:px-8">
           <div>
             <p className="eyebrow">Stay Informed</p>
             <h2 className="display mt-2 text-3xl">{s.newsletter_title}</h2>
