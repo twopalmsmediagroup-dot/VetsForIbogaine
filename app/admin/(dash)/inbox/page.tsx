@@ -2,7 +2,7 @@ import { serverClient } from "@/lib/supabase/server";
 import ConfirmButton from "@/components/admin/ConfirmButton";
 import { deleteInquiry, setInquiryHandled } from "../../actions";
 
-const TYPES: Record<string, string> = { join: "Join the consortium", partner: "Partnership", media: "Media", general: "General" };
+const TYPES: Record<string, string> = { join: "Join the consortium", partner: "Partnership", media: "Media", story: "Veteran story", general: "General" };
 
 export default async function Inbox() {
   const sb = await serverClient();

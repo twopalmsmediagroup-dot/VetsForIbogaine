@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { publicClient } from "./supabase/public";
-import type { Article, Organization, Page, Resource, Settings, TimelineEntry } from "./types";
+import type { Article, Organization, Page, Resource, Settings, TimelineEntry, VeteranStory } from "./types";
 
 export const getSettings = cache(async (): Promise<Settings> => {
   const { data } = await publicClient().from("site_settings").select("*").eq("id", 1).maybeSingle();
@@ -52,6 +52,18 @@ export async function getTimeline(): Promise<TimelineEntry[]> {
   const { data } = await publicClient().from("timeline_entries").select("*").eq("status", "published").order("year").order("sort_order");
   return (data ?? []) as TimelineEntry[];
 }
+
+export async function getStories(): Promise<VeteranStory[]> {
+  const { data } = await publicClient().from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
+    .eq("status", "published").eq("consent_on_file", true).order("sort_order").order("created_at", { ascending: false });
+  return (data ?? []) as VeteranStory[];
+}
+
+export const getStory = cache(async (slug: string): Promise<VeteranStory | null> => {
+  const { data } = await publicClient().from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
+    .eq("slug", slug).eq("status", "published").eq("consent_on_file", true).maybeSingle();
+  return data as VeteranStory | null;
+});
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://vetsforibogaine.org").replace(/\/$/, "");
 

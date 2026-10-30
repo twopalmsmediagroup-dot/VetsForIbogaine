@@ -5,7 +5,7 @@ import InquiryForm from "@/components/InquiryForm";
 
 export const metadata: Metadata = { title: "Contact & Get Involved", description: "Join the consortium, partner with Vets for Ibogaine, or reach out with a media inquiry.", alternates: { canonical: "/contact" } };
 
-const TITLES: Record<string, string> = { join: "Join the Consortium", partner: "Partner With Us", media: "Media Inquiries", general: "Contact Us" };
+const TITLES: Record<string, string> = { join: "Join the Consortium", partner: "Partner With Us", media: "Media Inquiries", story: "Share Your Story", general: "Contact Us" };
 
 export default async function ContactPage({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
   const sp = await searchParams;

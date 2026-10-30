@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import Visual from "@/components/Visual";
 import Gallery from "@/components/Gallery";
 import Image from "next/image";
+import StoriesSection from "@/components/StoriesSection";
 
 export const revalidate = 300;
 type Props = { params: Promise<{ slug: string }> };
@@ -62,6 +63,7 @@ export default async function GenericPage({ params }: Props) {
         <Markdown>{p.body}</Markdown>
       </article>
       {galleryBlock}
+      {p.slug === "why-veterans" && <StoriesSection />}
     </>
   );
 }

@@ -20,7 +20,7 @@ export async function submitInquiry(_prev: FormState, formData: FormData): Promi
   const email = String(formData.get("email") || "").trim().toLowerCase();
   const organization = String(formData.get("organization") || "").trim().slice(0, 200) || null;
   const typeRaw = String(formData.get("inquiry_type") || "general");
-  const inquiry_type = ["join", "partner", "media", "general"].includes(typeRaw) ? typeRaw : "general";
+  const inquiry_type = ["join", "partner", "media", "story", "general"].includes(typeRaw) ? typeRaw : "general";
   const message = String(formData.get("message") || "").trim().slice(0, 5000) || null;
   if (!name) return { ok: false, message: "Please enter your name." };
   if (!EMAIL.test(email)) return { ok: false, message: "Please enter a valid email address." };

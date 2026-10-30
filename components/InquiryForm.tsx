@@ -30,6 +30,7 @@ export default function InquiryForm({ defaultType = "general" }: { defaultType?:
           <option value="join">Joining the consortium</option>
           <option value="partner">Partnering with us</option>
           <option value="media">Media inquiry</option>
+          <option value="story">Sharing my story (veterans)</option>
           <option value="general">General question</option>
         </select>
       </div>

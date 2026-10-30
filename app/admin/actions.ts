@@ -47,7 +47,9 @@ export async function saveEntity(entityKey: string, id: string | null, formData:
     : await supabase.from(entity.table).insert(row).select("id").single();
 
   if (res.error) {
-    const msg = res.error.code === "23505" ? "That web address is already used by another item. Change the Web address field." : res.error.message;
+    const msg = res.error.code === "23505" ? "That web address is already used by another item. Change the Web address field."
+      : res.error.code === "23514" && res.error.message.includes("consent") ? "To publish this story, first tick “Written consent on file”."
+      : res.error.message;
     redirect(`/admin/${entityKey}/${id ?? "new"}?error=${enc(msg)}`);
   }
   revalidatePath("/", "layout");

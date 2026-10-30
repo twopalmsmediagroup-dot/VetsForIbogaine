@@ -21,6 +21,7 @@ To take something down without losing it, set it to **Draft** and save.
 | **Articles & News** | Your editorial articles, research summaries, announcements and links to outside news coverage | News page (homepage “In the News” button), focus area pages |
 | **Resources** | Studies, reports, guides, policy documents | Resources page and focus area pages |
 | **Organizations** | Confirmed partners and informational listings | Partners page, homepage, focus area pages |
+| **Veteran Stories** | Photos and short bios of veterans | Why Veterans page |
 | **Timeline** | Historical milestones | Timeline page |
 | **Pages & Focus Areas** | About Ibogaine, Why Veterans, the seven consortium focus areas, legal pages | Their own pages |
 | **Homepage & Site Settings** | Homepage headlines, photos, tagline, pillar descriptions, footer, social links, donate button | Homepage and footer |
@@ -63,6 +64,15 @@ Photo tips: landscape, at least 1600 px wide, under 10 MB. Use photos you own or
 3. **Header image / portrait**: upload one portrait. It appears beside your bio.
 4. **Photo gallery**: click **Upload photos** and select several at once. Use the ← → arrows to reorder and **Remove** to delete. Visitors can tap any photo to enlarge it.
 5. Click **Save**. The page is linked as **About Us** in the website footer.
+
+### Add a veteran story
+1. **Veteran Stories → + Add story**.
+2. Enter the veteran's **name** (only what they've agreed to share), **service** (e.g. *U.S. Army · Iraq, 2004–2010*), a **photo**, an optional one-line **quote**, and a 2–4 sentence **short bio**.
+3. Optional: add a **full story**. The card then gets a “Read full story” link to its own page.
+4. **Consent is required.** Get the veteran's written permission to publish their name, photo and story, keep it on file, then tick **Written consent on file**. The site won't publish a story without it.
+5. Set Visibility to **Published** and **Save**. Stories appear as swipeable cards at the bottom of the **Why Veterans** page.
+
+Let veterans tell their experience in their own words, and avoid promising results. Every story shows a note that experiences vary and aren't medical advice. Veterans can also send you their story through the **Share Your Story** button, which arrives in your Inbox.
 
 ### Add a timeline milestone
 **Timeline → + Add timeline entry**. Enter the **Year** (used for ordering) and optionally a **Date as displayed** like “January 2024”. Add a source link whenever possible.

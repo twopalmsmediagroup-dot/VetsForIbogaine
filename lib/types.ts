@@ -30,4 +30,9 @@ export type TimelineEntry = {
   source_name: string | null; source_url: string | null; image_url: string | null; sort_order: number; status: Status;
 };
 
+export type VeteranStory = {
+  id: string; slug: string; name: string; service: string | null; photo_url: string | null; quote: string | null;
+  short_bio: string | null; full_story: string | null; sort_order: number;
+};
+
 export type Settings = Record<string, string | null>;
