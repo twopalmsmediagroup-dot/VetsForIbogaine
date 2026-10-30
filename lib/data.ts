@@ -1,5 +1,7 @@
 import { cache } from "react";
+import { draftMode } from "next/headers";
 import { publicClient } from "./supabase/public";
+import { serverClient } from "./supabase/server";
 import type { Article, Organization, Page, Resource, Settings, TimelineEntry, VeteranStory } from "./types";
 
 export const getSettings = cache(async (): Promise<Settings> => {
@@ -7,18 +9,34 @@ export const getSettings = cache(async (): Promise<Settings> => {
   return (data ?? {}) as Settings;
 });
 
+/**
+ * Content reads. In preview (draft mode, switched on from the dashboard) they use the signed-in
+ * session, so RLS also returns drafts to staff — and still only published rows to anyone else.
+ */
+const reader = cache(async () => {
+  const preview = (await draftMode()).isEnabled;
+  return {
+    db: preview ? await serverClient() : publicClient(),
+    statuses: preview ? ["draft", "published"] : ["published"],
+    consent: preview ? [true, false] : [true],
+  };
+});
+
 export const getPage = cache(async (slug: string): Promise<Page | null> => {
-  const { data } = await publicClient().from("pages").select("*").eq("slug", slug).eq("status", "published").maybeSingle();
+  const { db, statuses } = await reader();
+  const { data } = await db.from("pages").select("*").eq("slug", slug).in("status", statuses).maybeSingle();
   return data as Page | null;
 });
 
 export const getAreas = cache(async (): Promise<Page[]> => {
-  const { data } = await publicClient().from("pages").select("*").eq("kind", "consortium_area").eq("status", "published").order("sort_order");
+  const { db, statuses } = await reader();
+  const { data } = await db.from("pages").select("*").eq("kind", "consortium_area").in("status", statuses).order("sort_order");
   return (data ?? []) as Page[];
 });
 
 export async function getArticles(opts: { type?: string; area?: string; limit?: number; featured?: boolean } = {}): Promise<Article[]> {
-  let q = publicClient().from("articles").select("*").eq("status", "published");
+  const { db, statuses } = await reader();
+  let q = db.from("articles").select("*").in("status", statuses);
   if (opts.type) q = q.eq("article_type", opts.type);
   if (opts.area) q = q.eq("area_slug", opts.area);
   if (opts.featured) q = q.eq("featured", true);
@@ -29,19 +47,22 @@ export async function getArticles(opts: { type?: string; area?: string; limit?: 
 }
 
 export const getArticle = cache(async (slug: string): Promise<Article | null> => {
-  const { data } = await publicClient().from("articles").select("*").eq("slug", slug).eq("status", "published").maybeSingle();
+  const { db, statuses } = await reader();
+  const { data } = await db.from("articles").select("*").eq("slug", slug).in("status", statuses).maybeSingle();
   return data as Article | null;
 });
 
 export async function getResources(area?: string): Promise<Resource[]> {
-  let q = publicClient().from("resources").select("*").eq("status", "published");
+  const { db, statuses } = await reader();
+  let q = db.from("resources").select("*").in("status", statuses);
   if (area) q = q.eq("area_slug", area);
   const { data } = await q.order("sort_order").order("published_date", { ascending: false, nullsFirst: false });
   return (data ?? []) as Resource[];
 }
 
 export async function getOrganizations(opts: { area?: string; featured?: boolean } = {}): Promise<Organization[]> {
-  let q = publicClient().from("organizations").select("*").eq("status", "published");
+  const { db, statuses } = await reader();
+  let q = db.from("organizations").select("*").in("status", statuses);
   if (opts.area) q = q.eq("area_slug", opts.area);
   if (opts.featured) q = q.eq("featured", true);
   const { data } = await q.order("relationship").order("sort_order").order("name");
@@ -49,19 +70,22 @@ export async function getOrganizations(opts: { area?: string; featured?: boolean
 }
 
 export async function getTimeline(): Promise<TimelineEntry[]> {
-  const { data } = await publicClient().from("timeline_entries").select("*").eq("status", "published").order("year").order("sort_order");
+  const { db, statuses } = await reader();
+  const { data } = await db.from("timeline_entries").select("*").in("status", statuses).order("year").order("sort_order");
   return (data ?? []) as TimelineEntry[];
 }
 
 export async function getStories(): Promise<VeteranStory[]> {
-  const { data } = await publicClient().from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
-    .eq("status", "published").eq("consent_on_file", true).order("sort_order").order("created_at", { ascending: false });
+  const { db, statuses, consent } = await reader();
+  const { data } = await db.from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
+    .in("status", statuses).in("consent_on_file", consent).order("sort_order").order("created_at", { ascending: false });
   return (data ?? []) as VeteranStory[];
 }
 
 export const getStory = cache(async (slug: string): Promise<VeteranStory | null> => {
-  const { data } = await publicClient().from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
-    .eq("slug", slug).eq("status", "published").eq("consent_on_file", true).maybeSingle();
+  const { db, statuses, consent } = await reader();
+  const { data } = await db.from("veteran_stories").select("id, slug, name, service, photo_url, quote, short_bio, full_story, sort_order")
+    .eq("slug", slug).in("status", statuses).in("consent_on_file", consent).maybeSingle();
   return data as VeteranStory | null;
 });
 

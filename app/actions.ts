@@ -1,5 +1,7 @@
 "use server";
+import { after } from "next/server";
 import { publicClient } from "@/lib/supabase/public";
+import { notifyNewInquiry } from "@/lib/notify";
 
 export type FormState = { ok: boolean; message: string } | null;
 
@@ -41,6 +43,7 @@ export async function submitInquiry(_prev: FormState, formData: FormData): Promi
   }
   const { error } = await publicClient().from("inquiries").insert(row);
   if (error) return { ok: false, message: "Something went wrong. Please try again." };
+  after(() => notifyNewInquiry(row)); // sent after the response, so the visitor never waits on email
   return {
     ok: true,
     message: inquiry_type === "story"

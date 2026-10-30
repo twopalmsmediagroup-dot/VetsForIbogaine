@@ -24,7 +24,10 @@ export default async function EntityEdit({ params, searchParams }: Props) {
   }
   const { data: areas } = await sb.from("pages").select("slug, title").eq("kind", "consortium_area").order("sort_order");
   const user = await getStaffUser();
-  const publicPath = !isNew && row.status === "published" ? e.publicPath?.(row) : null;
+  const path = isNew ? null : e.publicPath?.(row) ?? null;
+  const publicPath = row.status === "published" ? path : null;
+  // Drafts can be previewed on the site itself (outside links can't).
+  const previewPath = row.status !== "published" && path?.startsWith("/") ? `/admin/preview?path=${encodeURIComponent(path)}` : null;
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -32,6 +35,7 @@ export default async function EntityEdit({ params, searchParams }: Props) {
       <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">{isNew ? `New ${e.singular.toLowerCase()}` : (row[e.titleField] as string)}</h1>
         {publicPath && <a href={publicPath} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-blue-800 underline">View on website ↗</a>}
+        {previewPath && <a href={previewPath} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-blue-800 underline">Preview draft ↗</a>}
       </div>
       <div className="mt-6"><Notice sp={sp} /></div>
       <form action={saveEntity.bind(null, key, isNew ? null : id)} className="rounded-lg bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
