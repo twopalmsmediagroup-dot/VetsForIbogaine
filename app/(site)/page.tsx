@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { getAreas, getArticles, getOrganizations, getSettings } from "@/lib/data";
+import { getAreas, getOrganizations, getSettings } from "@/lib/data";
 import Visual from "@/components/Visual";
-import ArticleCard from "@/components/ArticleCard";
 import NewsletterForm from "@/components/NewsletterForm";
 import { RelationshipBadge } from "@/components/OrgCard";
 import { AREA_ICONS, ArrowRight, Book, Megaphone, Network } from "@/components/Icons";
@@ -15,8 +14,8 @@ const PILLARS: Record<string, { icon: typeof Book; key: string }> = {
 };
 
 export default async function Home() {
-  const [s, areas, news, orgs] = await Promise.all([
-    getSettings(), getAreas(), getArticles({ limit: 3 }), getOrganizations({ featured: true }),
+  const [s, areas, orgs] = await Promise.all([
+    getSettings(), getAreas(), getOrganizations({ featured: true }),
   ]);
   const pillarOrder = (s.tagline || "Advocacy • Collaboration • Education")
     .split(/[•·|]/).map((p) => p.trim().toLowerCase()).filter((p) => PILLARS[p]);
@@ -155,24 +154,17 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* NEWS */}
-      {news.length > 0 && (
-        <section className="bg-paper" aria-labelledby="news-heading">
-          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="eyebrow">In the News</p>
-                <h2 id="news-heading" className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900">{s.news_title}</h2>
-                <p className="mt-3 text-ink/75">{s.news_body}</p>
-              </div>
-              <Link href="/news" className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase text-gold-700 hover:text-navy-900">View All <ArrowRight /></Link>
-            </div>
-            <ul className="mt-7 grid gap-6 md:grid-cols-3">
-              {news.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}
-            </ul>
+      {/* NEWS — button only */}
+      <section className="border-t border-line bg-paper" aria-labelledby="news-heading">
+        <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>
+            <p className="eyebrow">News & Articles</p>
+            <h2 id="news-heading" className="display mt-2 text-3xl text-navy-900">{s.news_title}</h2>
+            {s.news_body && <p className="mt-2 text-ink/75">{s.news_body}</p>}
           </div>
-        </section>
-      )}
+          <Link href="/news?type=media_coverage" className="btn btn-gold shrink-0">In the News <ArrowRight /></Link>
+        </div>
+      </section>
 
       {/* NEWSLETTER */}
       <section className="on-dark bg-navy-900 text-white">

@@ -18,7 +18,7 @@ To take something down without losing it, set it to **Draft** and save.
 
 | Menu item | What it controls | Where it shows up |
 |---|---|---|
-| **Articles & News** | Your editorial articles, research summaries, announcements and links to outside news coverage | News page, homepage “In the News”, focus area pages |
+| **Articles & News** | Your editorial articles, research summaries, announcements and links to outside news coverage | News page (homepage “In the News” button), focus area pages |
 | **Resources** | Studies, reports, guides, policy documents | Resources page and focus area pages |
 | **Organizations** | Confirmed partners and informational listings | Partners page, homepage, focus area pages |
 | **Timeline** | Historical milestones | Timeline page |
@@ -35,7 +35,7 @@ To take something down without losing it, set it to **Draft** and save.
 3. Write in **Article text**. Use the toolbar for headings, bold, lists and links, and **Preview** to check it.
 4. Add a **Short summary** (shows on cards and Google), a **Cover image**, and **References** for any medical or research claims.
 5. Pick a **Consortium focus area** so it also appears on that area's page.
-6. When it's ready, set Visibility to **Published** and **Save**. Tick **Feature on homepage** if it should appear there.
+6. When it's ready, set Visibility to **Published** and **Save**.
 
 ### Share a news story from another outlet
 1. **Articles & News → + Add article**, Type = **In the News**.
