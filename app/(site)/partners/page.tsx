@@ -14,7 +14,7 @@ export default async function PartnersPage() {
   return (
     <>
       <PageHero eyebrow="Partners & Organizations" title={s.partners_title || "Organizations Shaping the Field."} summary={s.partners_body} />
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <section aria-labelledby="cp">
           <h2 id="cp" className="display text-3xl text-navy-900">Confirmed Consortium Partners</h2>
           <p className="mt-2 max-w-3xl text-sm text-muted">Organizations with a formal relationship with Vets for Ibogaine. A partnership is not a guarantee of any service or outcome.</p>
@@ -27,7 +27,7 @@ export default async function PartnersPage() {
             </div>
           )}
         </section>
-        <section aria-labelledby="il" className="mt-20">
+        <section aria-labelledby="il" className="mt-14">
           <h2 id="il" className="display text-3xl text-navy-900">Informational Listings</h2>
           <p className="mt-2 max-w-3xl text-sm text-muted">These organizations are listed for educational reference only. Inclusion does not mean they are affiliated with, partnered with, or endorsed by Vets for Ibogaine, or that they endorse us.</p>
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{listings.map((o) => <li key={o.id}><OrgCard o={o} /></li>)}</ul>

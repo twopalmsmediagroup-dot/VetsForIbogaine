@@ -18,7 +18,7 @@ const COLS = [
 export default function Footer({ s }: { s: Settings }) {
   return (
     <footer className="on-dark bg-navy-950 text-white/80">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 sm:grid-cols-3 sm:px-6 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr_auto] lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-8 px-4 py-10 sm:grid-cols-3 sm:px-6 sm:py-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_auto] lg:px-8">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <Link href="/" className="flex items-center gap-3" aria-label="Vets for Ibogaine — home">
             <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-14 w-auto" />

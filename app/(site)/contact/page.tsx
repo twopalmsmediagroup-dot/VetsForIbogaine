@@ -14,7 +14,7 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   return (
     <>
       <PageHero eyebrow="Get Involved" title={TITLES[type]} summary="Researchers, clinicians, veterans, advocates, funders and journalists — we'd like to hear from you." />
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_300px]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_300px]">
         <InquiryForm defaultType={type} />
         <aside className="space-y-6 text-sm text-muted">
           <div className="bg-navy-900 p-6 text-white">

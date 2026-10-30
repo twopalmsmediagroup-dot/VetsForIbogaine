@@ -26,12 +26,12 @@ export default async function AreaPage({ params }: Props) {
   return (
     <>
       <PageHero eyebrow="Consortium Focus Area" title={p.title} summary={p.summary} />
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_320px] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_320px] lg:px-8">
         <div className="min-w-0">
           <Markdown>{p.body}</Markdown>
 
           {resources.length > 0 && (
-            <section className="mt-14" aria-labelledby="res-h">
+            <section className="mt-10" aria-labelledby="res-h">
               <h2 id="res-h" className="display text-3xl text-navy-900">Research & Resources</h2>
               <ul className="mt-6 divide-y divide-line border-y border-line">
                 {resources.map((r) => (
@@ -49,7 +49,7 @@ export default async function AreaPage({ params }: Props) {
           )}
 
           {articles.length > 0 && (
-            <section className="mt-14" aria-labelledby="art-h">
+            <section className="mt-10" aria-labelledby="art-h">
               <h2 id="art-h" className="display text-3xl text-navy-900">Articles & Coverage</h2>
               <ul className="mt-6 grid gap-6 sm:grid-cols-2">
                 {articles.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}
@@ -58,7 +58,7 @@ export default async function AreaPage({ params }: Props) {
           )}
 
           {orgs.length > 0 && (
-            <section className="mt-14" aria-labelledby="org-h">
+            <section className="mt-10" aria-labelledby="org-h">
               <h2 id="org-h" className="display text-3xl text-navy-900">Organizations</h2>
               <ul className="mt-6 grid gap-6 sm:grid-cols-2">
                 {orgs.map((o) => <li key={o.id}><OrgCard o={o} /></li>)}

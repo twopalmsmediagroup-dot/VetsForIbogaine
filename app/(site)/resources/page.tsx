@@ -14,9 +14,9 @@ export default async function ResourcesPage() {
   return (
     <>
       <PageHero eyebrow="Resources" title="Evidence & Resources" summary="Peer-reviewed studies, reports, guides and policy documents, organized by focus area." />
-      <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
         {byArea.map(({ area, items }) => (
-          <section key={area.slug} className="mb-14" aria-labelledby={`r-${area.slug}`}>
+          <section key={area.slug} className="mb-10" aria-labelledby={`r-${area.slug}`}>
             <h2 id={`r-${area.slug}`} className="display text-3xl text-navy-900">{area.title}</h2>
             <ul className="mt-5 divide-y divide-line border-y border-line">
               {items.map((r) => (

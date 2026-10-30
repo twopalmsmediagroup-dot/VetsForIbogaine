@@ -12,11 +12,11 @@ export default async function ConsortiumPage() {
   return (
     <>
       <PageHero eyebrow="The Consortium" title={s.consortium_title || "Progress Requires Collaboration."} summary={s.consortium_body} />
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <p className="max-w-3xl text-lg text-ink/80">
           <strong className="text-navy-900">{s.tagline}</strong> is our mission framework. The seven focus areas below are the subjects and organizations our network brings together.
         </p>
-        <ol className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {areas.map((a, i) => {
             const Icon = AREA_ICONS[a.icon || "book"] || Book;
             return (

@@ -17,8 +17,8 @@ export default function ArticleCard({ a }: { a: Article }) {
         {a.cover_image_url ? (
           <Image src={a.cover_image_url} alt="" fill sizes="(min-width:1024px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-[1.03]" />
         ) : (
-          <div className="neural-bg flex h-full items-center justify-center">
-            <Image src="/brand/brain-mark.png" alt="" width={108} height={120} className="w-16 opacity-80" />
+          <div className="neural-bg flex h-full items-end p-5">
+            <span className="display text-2xl leading-tight text-white/90">{label}</span>
           </div>
         )}
       </div>
