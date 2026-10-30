@@ -72,7 +72,7 @@ Photo tips: landscape, at least 1600 px wide, under 10 MB. Use photos you own or
 4. **Consent is required.** Get the veteran's written permission to publish their name, photo and story, keep it on file, then tick **Written consent on file**. The site won't publish a story without it.
 5. Set Visibility to **Published** and **Save**. Stories appear as swipeable cards at the bottom of the **Why Veterans** page.
 
-Let veterans tell their experience in their own words, and avoid promising results. Every story shows a note that experiences vary and aren't medical advice. Veterans can also send you their story through the **Share Your Story** button, which arrives in your Inbox.
+Let veterans tell their experience in their own words, and avoid promising results. Every story shows a note that experiences vary and aren't medical advice. Veterans can also submit their own story: on the Contact page they choose **Add my story** and upload a photo plus a 150-word bio. Submissions arrive in **Inbox** with the photo. Click **Create draft story** to turn one into a draft (photo, name, service and bio filled in), review it, then publish.
 
 ### Add a timeline milestone
 **Timeline → + Add timeline entry**. Enter the **Year** (used for ordering) and optionally a **Date as displayed** like “January 2024”. Add a source link whenever possible.

@@ -19,7 +19,7 @@ export default async function StoriesSection() {
           <p className="max-w-2xl text-xs leading-relaxed text-muted">
             These are personal accounts shared with permission. Individual experiences vary and are not medical advice or evidence of safety or effectiveness. Ibogaine is a Schedule I substance in the U.S. and is not FDA-approved. Vets for Ibogaine does not arrange treatment or endorse providers.
           </p>
-          <Link href="/contact?type=story" className="btn btn-outline shrink-0 justify-center">Share Your Story</Link>
+          <Link href="/contact?type=story" className="btn btn-outline shrink-0 justify-center">Add My Story</Link>
         </div>
       </div>
     </section>

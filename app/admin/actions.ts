@@ -174,3 +174,31 @@ export async function fetchMissingThumbnails() {
     : `Added ${added} of ${total} thumbnail${total === 1 ? "" : "s"}.${added < total ? " Some sites don't provide a preview image — upload one manually for those." : ""}`;
   redirect(`/admin/articles?info=${encodeURIComponent(msg)}`);
 }
+
+/** Turns a "story" contact submission into a draft Veteran Story (copying the photo into the public media bucket). */
+export async function createStoryFromInquiry(inquiryId: string) {
+  await requireStaff();
+  const supabase = await serverClient();
+  const { data: q } = await supabase.from("inquiries").select("*").eq("id", inquiryId).single();
+  if (!q) redirect(`/admin/inbox?error=${enc("Submission not found.")}`);
+
+  let photo_url: string | null = null;
+  if (q.photo_path) {
+    const { data: blob } = await supabase.storage.from("submissions").download(q.photo_path);
+    if (blob) {
+      const path = `stories/${Date.now()}-${Math.random().toString(36).slice(2, 7)}.jpg`;
+      const { error } = await supabase.storage.from("media").upload(path, blob, { contentType: blob.type || "image/jpeg", cacheControl: "31536000" });
+      if (!error) photo_url = supabase.storage.from("media").getPublicUrl(path).data.publicUrl;
+    }
+  }
+  const base = slugify(q.name) || "story";
+  const { data: story, error } = await supabase.from("veteran_stories").insert({
+    name: q.name, service: q.service, short_bio: q.short_bio, photo_url,
+    consent_on_file: !!q.consent_share, status: "draft",
+    slug: `${base}-${Math.random().toString(36).slice(2, 6)}`,
+  }).select("id").single();
+  if (error || !story) redirect(`/admin/inbox?error=${enc("Couldn't create the story: " + (error?.message ?? "unknown error"))}`);
+  await supabase.from("inquiries").update({ handled: true }).eq("id", inquiryId);
+  revalidatePath("/admin/inbox");
+  redirect(`/admin/stories/${story!.id}?info=${enc("Draft created from the submission. Review it, then set Visibility to Published and Save.")}`);
+}
