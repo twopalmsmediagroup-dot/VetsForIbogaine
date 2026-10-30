@@ -19,7 +19,7 @@ export default function Visual({
     <div className={`neural-bg relative overflow-hidden ${mark ? "flex items-center justify-center" : "hidden lg:block"} ${className}`} aria-hidden="true">
       <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(#e2c98a 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
       {mark ? (
-        <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="relative w-[38%] max-w-[260px] h-auto drop-shadow-[0_0_40px_rgba(214,180,100,0.35)]" />
+        <Image src="/brand/brain-mark.png" alt="" width={541} height={600} priority={priority} className="relative w-[38%] max-w-[260px] h-auto drop-shadow-[0_0_40px_rgba(214,180,100,0.35)]" />
       ) : (
         <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#c6a052" strokeWidth="0.6">
           <path d="M-20 240 C 80 200, 120 120, 210 130 S 340 60, 420 40" />
