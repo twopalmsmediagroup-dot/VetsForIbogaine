@@ -5,7 +5,8 @@ Education/advocacy consortium website. **Independent of MediaBridge** — never 
 ## Stack
 - Next.js 15 (App Router, TypeScript, React 19) · Tailwind CSS v4 (tokens in `app/globals.css` `@theme`)
 - Supabase project `zbmayuyrwbzlmkauqady` ("Vets For Ibogaine"): Postgres + Auth + Storage bucket `media`
-- Vercel project `vets-for-ibogaine`. Branch `staging` → private preview. Branch `main` → production. **Never push to `main`, promote, or touch DNS (GoDaddy, VetsForIbogaine.org) without Amy's explicit approval.**
+- Vercel project `vets-for-ibogaine`. Work on `staging`, then fast-forward `preview` to it — Vercel builds the private preview from `preview` (https://vets-for-ibogaine-git-preview-media-bridge.vercel.app); git pushes don't always trigger a build, so start one from Vercel if needed. Branch `main` → production.
+- Main working thread: the Claude session "Vets For Ibogaine — Website Builder (main thread)". Avoid parallel sessions pushing to the same branches. **Never push to `main`, promote, or touch DNS (GoDaddy, VetsForIbogaine.org) without Amy's explicit approval.**
 
 ## Structure
 - `app/(site)/` public pages (ISR, `revalidate = 300`; admin saves call `revalidatePath("/", "layout")`)
