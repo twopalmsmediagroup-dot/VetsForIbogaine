@@ -14,12 +14,20 @@ export const NAV = [
   { href: "/partners", label: "Partners" },
   { href: "/timeline", label: "Timeline" },
   { href: "/news", label: "News" },
+  { href: "/resources", label: "Resources" },
+  { href: "/contact", label: "Contact", mobileOnly: true }, // desktop has the Join button
 ];
 
 export default function Header({ tagline }: { tagline?: string | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || (href === "/consortium" && pathname.startsWith("/consortium") && !pathname.endsWith("scientific-research"));
@@ -30,7 +38,7 @@ export default function Header({ tagline }: { tagline?: string | null }) {
         <div className="min-w-0 shrink-0"><Wordmark tagline={tagline} /></div>
         <nav aria-label="Main" className="hidden xl:block">
           <ul className="flex items-center gap-5 2xl:gap-6">
-            {NAV.filter((n) => n.href !== "/").map((n) => (
+            {NAV.filter((n) => n.href !== "/" && !("mobileOnly" in n)).map((n) => (
               <li key={n.href}>
                 <Link
                   href={n.href}

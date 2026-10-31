@@ -1,6 +1,7 @@
 import { serverClient, getStaffUser } from "@/lib/supabase/server";
 import ConfirmButton from "@/components/admin/ConfirmButton";
 import Notice from "@/components/admin/Notice";
+import { removeOrphanStoryPhotos } from "@/lib/admin/cleanup";
 import { createStoryFromInquiry, deleteInquiry, setInquiryHandled } from "../../actions";
 
 const TYPES: Record<string, string> = { join: "Join the consortium", partner: "Partnership", media: "Media", story: "Veteran story", general: "General" };
@@ -14,6 +15,7 @@ export default async function Inbox({ searchParams }: { searchParams: Promise<Re
     getStaffUser(),
   ]);
   const isAdmin = me?.role === "admin";
+  await removeOrphanStoryPhotos(sb);
   // Private story photos: short-lived signed links for staff viewing.
   const photoPaths = (inquiries ?? []).map((i) => i.photo_path).filter(Boolean) as string[];
   const signed: Record<string, string> = {};

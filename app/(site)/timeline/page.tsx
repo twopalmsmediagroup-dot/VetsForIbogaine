@@ -13,6 +13,7 @@ export default async function TimelinePage() {
     <>
       <PageHero eyebrow="History & Timeline" title={s.timeline_title || "A History of Tradition, Science and Discovery."} summary={s.timeline_body} />
       <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-10">
+        {!entries.length && <p className="text-muted">The timeline is being added. Check back soon.</p>}
         <ol className="relative border-l border-gold-500/50 pl-8 sm:pl-12">
           {entries.map((e) => (
             <li key={e.id} className="relative pb-8 last:pb-0">
