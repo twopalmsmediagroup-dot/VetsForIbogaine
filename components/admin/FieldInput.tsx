@@ -3,7 +3,7 @@ import ImageUpload from "./ImageUpload";
 import MarkdownEditor from "./MarkdownEditor";
 import GalleryUpload from "./GalleryUpload";
 
-const input = "w-full rounded border border-slate-300 bg-white px-3 py-2.5 text-sm focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/20";
+const input = "w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm shadow-sm transition focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-gold-400/40";
 
 export default function FieldInput({ f, value, areas, folder }: { f: Field; value: unknown; areas: { slug: string; title: string }[]; folder: string }) {
   const id = `f-${f.name}`;

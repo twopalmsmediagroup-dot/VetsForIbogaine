@@ -11,12 +11,12 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
   const row = (data ?? {}) as Record<string, unknown>;
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="text-2xl font-bold">Homepage & Site Settings</h1>
+      <h1 className="font-display text-3xl text-navy-900">Homepage & Site Settings</h1>
       <p className="mt-1 text-sm text-slate-600">Headlines, photos and text used across the homepage, plus footer and social links. Where no photo is set, the site shows a navy panel with the brain mark.</p>
       <div className="mt-6"><Notice sp={sp} /></div>
       <form action={saveSettings} className="space-y-6">
         {SETTINGS_GROUPS.map((g) => (
-          <fieldset key={g.title} className="rounded-lg bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-8">
+          <fieldset key={g.title} className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200/80 sm:p-8">
             <legend className="sr-only">{g.title}</legend>
             <h2 className="mb-5 text-lg font-bold">{g.title}</h2>
             <div className="grid gap-6 sm:grid-cols-2">
@@ -25,7 +25,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           </fieldset>
         ))}
         <div className="sticky bottom-0 flex items-center gap-3 rounded-lg bg-white px-6 py-4 shadow ring-1 ring-slate-200">
-          <button className="rounded bg-[#0b1d36] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#12294a]">Save all settings</button>
+          <button className="rounded-lg bg-navy-900 shadow-sm px-5 py-2.5 text-sm font-semibold text-white hover:bg-navy-800">Save all settings</button>
         </div>
       </form>
     </div>
