@@ -21,7 +21,7 @@ export default async function OgImage() {
           </div>
           <div style={{ marginTop: 18, fontSize: 22, letterSpacing: 4, color: "#e2c98a" }}>ADVOCACY • COLLABORATION • EDUCATION</div>
           <div style={{ marginTop: 34, fontSize: 30, color: "rgba(255,255,255,0.85)", maxWidth: 680 }}>
-            Credible information on ibogaine and veteran well-being.
+            Informed veterans. Better options.
           </div>
         </div>
       </div>
