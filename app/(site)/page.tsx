@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getAreas, getOrganizations, getSettings } from "@/lib/data";
+import { getAreas, getArticles, getOrganizations, getResources, getSettings, getTimeline } from "@/lib/data";
+import { FactsPanel, MilestonesPanel, NetworkPanel } from "@/components/HomePanels";
 import Visual from "@/components/Visual";
 import NewsletterForm from "@/components/NewsletterForm";
 import { RelationshipBadge } from "@/components/OrgCard";
@@ -14,9 +15,15 @@ const PILLARS: Record<string, { icon: typeof Book; key: string }> = {
 };
 
 export default async function Home() {
-  const [s, areas, orgs] = await Promise.all([
-    getSettings(), getAreas(), getOrganizations({ featured: true }),
+  const [s, areas, orgs, allOrgs, resources, articles, timeline] = await Promise.all([
+    getSettings(), getAreas(), getOrganizations({ featured: true }), getOrganizations(), getResources(), getArticles(), getTimeline(),
   ]);
+  const stats = [
+    { value: areas.length, label: "Consortium focus areas", href: "/consortium" },
+    { value: allOrgs.length, label: "Organizations listed", href: "/partners" },
+    { value: articles.length, label: "Articles & news", href: "/news" },
+    { value: resources.length, label: "Studies & resources", href: "/resources" },
+  ];
   const pillarOrder = (s.tagline || "Advocacy • Collaboration • Education")
     .split(/[•·|]/).map((p) => p.trim().toLowerCase()).filter((p) => PILLARS[p]);
 
@@ -75,12 +82,12 @@ export default async function Home() {
           <p className="mt-5 text-base leading-relaxed text-ink/90 sm:text-lg">{s.mission_body}</p>
           <div className="mt-6"><Link href="/why-veterans" className="btn btn-gold">Why Veterans? <ArrowRight /></Link></div>
         </div>
-        <Visual src={s.mission_image_url} className="lg:min-h-[400px]" />
+        {s.mission_image_url ? <Visual src={s.mission_image_url} className="lg:min-h-[400px]" /> : <NetworkPanel stats={stats} className="lg:min-h-[400px]" />}
       </section>
 
       {/* ABOUT IBOGAINE */}
       <section className="grid bg-paper-2 lg:grid-cols-2">
-        <Visual src={s.about_image_url} className="order-2 lg:order-1 lg:min-h-[400px]" />
+        {s.about_image_url ? <Visual src={s.about_image_url} className="order-2 lg:order-1 lg:min-h-[400px]" /> : <FactsPanel className="order-2 lg:order-1 lg:min-h-[400px]" />}
         <div className="order-1 mx-auto flex max-w-2xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:order-2 lg:ml-0 lg:py-14 lg:pl-14 lg:pr-8">
           <p className="eyebrow">About Ibogaine</p>
           <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.about_title}</h2>
@@ -135,7 +142,9 @@ export default async function Home() {
               {orgs.slice(0, 4).map((o) => (
                 <li key={o.id} className="flex flex-col gap-2 bg-paper p-6">
                   <span className="display text-xl text-navy-900">{o.name}</span>
-                  <RelationshipBadge r={o.relationship} />
+                  <div><RelationshipBadge r={o.relationship} /></div>
+                  {o.description && <p className="mt-1 line-clamp-2 text-sm text-muted">{o.description}</p>}
+                  {o.location && <p className="mt-auto pt-1 text-xs font-medium tracking-wide text-navy-700">{o.location}</p>}
                 </li>
               ))}
             </ul>
@@ -145,7 +154,7 @@ export default async function Home() {
 
       {/* TIMELINE */}
       <section className="grid bg-paper-2 lg:grid-cols-2">
-        <Visual src={s.timeline_image_url} className="lg:min-h-[320px]" />
+        {s.timeline_image_url || !timeline.length ? <Visual src={s.timeline_image_url} className="lg:min-h-[320px]" /> : <MilestonesPanel entries={timeline} className="lg:min-h-[320px]" />}
         <div className="mx-auto flex max-w-2xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:ml-0 lg:py-14 lg:pl-14 lg:pr-8">
           <p className="eyebrow">History & Timeline</p>
           <h2 className="display mt-3 text-[2.1rem] leading-[1.1] sm:text-4xl text-navy-900 sm:text-5xl">{s.timeline_title}</h2>
