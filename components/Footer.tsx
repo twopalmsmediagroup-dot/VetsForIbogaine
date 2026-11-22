@@ -55,8 +55,8 @@ export default function Footer({ s }: { s: Settings }) {
         </div>
         )}
       </div>
-      <div className="border-t border-line bg-paper">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-muted sm:px-6 md:flex-row md:justify-between lg:px-8">
+      <div className="on-dark bg-navy-950">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-white/75 sm:px-6 md:flex-row md:justify-between lg:px-8">
           <p>© {new Date().getFullYear()} Vets for Ibogaine. All rights reserved.</p>
           <p className="md:max-w-2xl md:text-right">
             Educational information only. Not medical advice. Ibogaine is not FDA-approved. {s.disclaimer_short}
