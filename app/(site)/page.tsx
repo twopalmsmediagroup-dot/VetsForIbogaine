@@ -32,7 +32,7 @@ export default async function Home() {
       {/* HERO */}
       <section className="on-dark relative overflow-hidden bg-navy-950 text-white">
         <div className="absolute inset-0 lg:left-[45%]">
-          <Visual src={s.hero_image_url} mark priority className="h-full w-full" sizes="(min-width:1024px) 55vw, 100vw" />
+          <Visual src={s.hero_image_url} priority className="h-full w-full" sizes="(min-width:1024px) 55vw, 100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950/10 lg:via-navy-950/20" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8 lg:py-24">
