@@ -27,7 +27,7 @@ export default function Footer({ s }: { s: Settings }) {
             </span>
           </Link>
           <p className="mt-3 text-[0.62rem] font-semibold tracking-[0.2em] uppercase text-gold-400">{s.tagline || "Advocacy • Collaboration • Education"}</p>
-          <p className="mt-4 max-w-xs text-sm">{s.footer_tagline || "Veterans deserve to know all their options."}</p>
+          <p className="mt-4 max-w-xs text-sm">{s.footer_tagline || "Informed veterans. Better options."}</p>
           {s.contact_email && <a href={`mailto:${s.contact_email}`} className="mt-3 inline-block text-sm text-gold-300 hover:text-white">{s.contact_email}</a>}
         </div>
         {COLS.map((c) => (
