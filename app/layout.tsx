@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Cinzel, Libre_Caslon_Display, Public_Sans } from "next/font/google";
+import { Cinzel, Newsreader, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/data";
 
-const caslon = Libre_Caslon_Display({ weight: "400", subsets: ["latin"], variable: "--font-caslon", display: "swap" });
+// Newsreader is built for on-screen news reading; its optical-size axis keeps small headlines sturdy.
+const newsreader = Newsreader({ subsets: ["latin"], axes: ["opsz"], style: ["normal", "italic"], weight: "variable", variable: "--font-newsreader", display: "swap" });
 const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-public-sans", display: "swap" });
 const cinzel = Cinzel({ weight: ["600", "700"], subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
 
@@ -23,7 +24,7 @@ export const viewport: Viewport = { themeColor: "#0b1d36" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${caslon.variable} ${publicSans.variable} ${cinzel.variable}`}>
+    <html lang="en" className={`${newsreader.variable} ${publicSans.variable} ${cinzel.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to main content</a>
         {children}

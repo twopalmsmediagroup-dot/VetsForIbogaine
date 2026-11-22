@@ -12,14 +12,20 @@ export default async function StoriesSection() {
         <p className="mt-3 max-w-2xl text-ink/90">Veterans who have undergone ibogaine treatment share their experiences, in their own words.</p>
         <div className="mt-6">
           {stories.length ? <StoriesCarousel stories={stories} /> : (
-            <p className="bg-white p-6 text-ink/90 ring-1 ring-line">Stories are coming soon.</p>
+            <div className="flex flex-col items-start gap-4 bg-white p-6 ring-1 ring-line sm:flex-row sm:items-center sm:justify-between sm:p-8">
+              <div>
+                <p className="display text-2xl text-navy-900">Be one of the first voices here.</p>
+                <p className="mt-1 max-w-xl text-sm text-muted">We&apos;re gathering the first veteran stories now. Share yours with a photo and a short bio — we review every submission and only publish with your permission.</p>
+              </div>
+              <Link href="/contact?type=story" className="btn btn-primary shrink-0 justify-center">Share your story</Link>
+            </div>
           )}
         </div>
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl text-xs leading-relaxed text-muted">
             These are personal accounts shared with permission. Individual experiences vary and are not medical advice or evidence of safety or effectiveness. Ibogaine is a Schedule I substance in the U.S. and is not FDA-approved. Vets for Ibogaine does not arrange treatment or endorse providers.
           </p>
-          <Link href="/contact?type=story" className="btn btn-outline shrink-0 justify-center">Add My Story</Link>
+          {stories.length > 0 && <Link href="/contact?type=story" className="btn btn-outline shrink-0 justify-center">Add My Story</Link>}
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ export default async function Team({ searchParams }: { searchParams: Promise<Rec
   const isAdmin = me?.role === "admin";
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-2xl font-bold">Team Access</h1>
+      <h1 className="font-display text-3xl text-navy-900">Team Access</h1>
       <p className="mt-1 text-sm text-slate-600">
         <strong>Administrators</strong> can do everything, including deleting and managing the team. <strong>Editors</strong> can create, edit and publish, but not delete.
       </p>
@@ -25,7 +25,7 @@ export default async function Team({ searchParams }: { searchParams: Promise<Rec
             <div className="flex-1"><label htmlFor="t-email" className="mb-1 block text-sm font-semibold">Email</label><input id="t-email" name="email" type="email" required className="w-full rounded border border-slate-300 px-3 py-2 text-sm" /></div>
             <div><label htmlFor="t-role" className="mb-1 block text-sm font-semibold">Role</label>
               <select id="t-role" name="role" className="rounded border border-slate-300 px-3 py-2 text-sm"><option value="editor">Editor</option><option value="admin">Administrator</option></select></div>
-            <button className="rounded bg-[#0b1d36] px-4 py-2 text-sm font-semibold text-white">Add</button>
+            <button className="rounded-lg bg-navy-900 shadow-sm px-4 py-2 text-sm font-semibold text-white">Add</button>
           </form>
           <p className="mt-2 text-xs text-slate-500">After adding someone, create their login in Supabase (Authentication → Users → Add user). See the admin guide.</p>
           <ul className="mt-6 divide-y divide-slate-100 rounded-lg bg-white ring-1 ring-slate-200">

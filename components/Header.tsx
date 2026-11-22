@@ -14,12 +14,20 @@ export const NAV = [
   { href: "/partners", label: "Partners" },
   { href: "/timeline", label: "Timeline" },
   { href: "/news", label: "News" },
+  { href: "/resources", label: "Resources" },
+  { href: "/contact", label: "Contact", mobileOnly: true }, // desktop has the Join button
 ];
 
 export default function Header({ tagline }: { tagline?: string | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || (href === "/consortium" && pathname.startsWith("/consortium") && !pathname.endsWith("scientific-research"));
@@ -30,13 +38,13 @@ export default function Header({ tagline }: { tagline?: string | null }) {
         <div className="min-w-0 shrink-0"><Wordmark tagline={tagline} /></div>
         <nav aria-label="Main" className="hidden xl:block">
           <ul className="flex items-center gap-5 2xl:gap-6">
-            {NAV.filter((n) => n.href !== "/").map((n) => (
+            {NAV.filter((n) => n.href !== "/" && !("mobileOnly" in n)).map((n) => (
               <li key={n.href}>
                 <Link
                   href={n.href}
                   aria-current={isActive(n.href) ? "page" : undefined}
                   className={`relative py-2 text-[0.7rem] font-semibold whitespace-nowrap tracking-[0.12em] uppercase transition-colors ${
-                    isActive(n.href) ? "text-gold-600 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-gold-500" : "text-navy-900 hover:text-gold-600"
+                    isActive(n.href) ? "text-accent after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-accent" : "text-navy-900 hover:text-accent"
                   }`}
                 >
                   {n.label}
@@ -46,7 +54,7 @@ export default function Header({ tagline }: { tagline?: string | null }) {
           </ul>
         </nav>
         <div className="flex shrink-0 items-center gap-3">
-          <Link href="/contact?type=join" className="btn btn-gold hidden !px-4 !py-2.5 whitespace-nowrap sm:inline-flex">
+          <Link href="/contact?type=join" className="btn btn-primary hidden !px-4 !py-2.5 whitespace-nowrap sm:inline-flex">
             Join<span className="xl:hidden 2xl:inline"> the Consortium</span> <ArrowRight />
           </Link>
           <button
@@ -66,13 +74,13 @@ export default function Header({ tagline }: { tagline?: string | null }) {
           <ul className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className={`block border-b border-line/60 py-3 text-sm font-semibold tracking-[0.1em] uppercase ${isActive(n.href) ? "text-gold-600" : "text-navy-900"}`}>
+                <Link href={n.href} className={`block border-b border-line/60 py-3 text-sm font-semibold tracking-[0.1em] uppercase ${isActive(n.href) ? "text-accent" : "text-navy-900"}`}>
                   {n.label}
                 </Link>
               </li>
             ))}
             <li className="pt-4 pb-2">
-              <Link href="/contact?type=join" className="btn btn-gold w-full justify-center">Join the Consortium <ArrowRight /></Link>
+              <Link href="/contact?type=join" className="btn btn-primary w-full justify-center">Join the Consortium <ArrowRight /></Link>
             </li>
           </ul>
         </nav>

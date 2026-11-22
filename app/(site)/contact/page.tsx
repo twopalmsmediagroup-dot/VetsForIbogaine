@@ -17,8 +17,8 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:gap-12 lg:grid-cols-[1fr_300px]">
         <InquiryForm defaultType={type} />
         <aside className="space-y-6 text-sm text-muted">
-          <div className="bg-navy-900 p-6 text-white">
-            <p className="font-semibold text-gold-300">Veterans in crisis</p>
+          <div className="on-dark bg-navy-900 p-6 text-white">
+            <p className="font-semibold text-accent">Veterans in crisis</p>
             <p className="mt-2 text-white/85">Call or text <strong className="text-white">988</strong> and press <strong className="text-white">1</strong>, or text <strong className="text-white">838255</strong>. Free and confidential, 24/7.</p>
           </div>
           <p>{s.disclaimer_short}</p>
