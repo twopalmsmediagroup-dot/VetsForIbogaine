@@ -16,12 +16,12 @@ export default function ArticleCard({ a }: { a: Article }) {
         ) : (
           // No cover image: show who it's from, so image-less cards are still distinguishable.
           <div className="neural-bg relative flex h-full flex-col items-center justify-center px-6 text-center" aria-hidden="true">
-            <svg className="absolute inset-0 h-full w-full opacity-30" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#c6a052" strokeWidth="0.6">
+            <svg className="absolute inset-0 h-full w-full opacity-30" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#8fa4cf" strokeWidth="0.6">
               <path d="M-20 190 C 80 160, 120 90, 210 100 S 340 40, 420 25" />
               <path d="M-20 215 C 90 185, 150 135, 230 140 S 350 85, 420 75" opacity=".55" />
             </svg>
-            <span className="relative h-px w-10 bg-gold-400/70" />
-            <span className="display gold-text relative mt-3 text-2xl leading-tight sm:text-3xl">{a.source_name || ARTICLE_TYPE_LABELS[a.article_type]}</span>
+            <span className="relative h-px w-10 bg-accent-soft/70" />
+            <span className="display accent-text relative mt-3 text-2xl leading-tight sm:text-3xl">{a.source_name || ARTICLE_TYPE_LABELS[a.article_type]}</span>
             <span className="relative mt-2 text-[0.65rem] font-semibold tracking-[0.2em] text-white/60 uppercase">{a.source_name ? ARTICLE_TYPE_LABELS[a.article_type] : "Vets for Ibogaine"}</span>
           </div>
         )}

@@ -46,7 +46,7 @@ export default async function EntityList({ params, searchParams }: Props) {
     <div className="mx-auto max-w-6xl">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex items-start gap-4">
-          <span className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-300 shadow sm:flex"><Icon size={22} /></span>
+          <span className="hidden h-12 w-12 shrink-0 items-center justify-center on-dark rounded-xl bg-navy-900 text-accent shadow sm:flex"><Icon size={22} /></span>
           <div>
             <h1 className="font-display text-3xl text-navy-900">{e.label}</h1>
             <p className="mt-1 max-w-2xl text-sm text-slate-600">{e.description}</p>
@@ -59,7 +59,7 @@ export default async function EntityList({ params, searchParams }: Props) {
             </form>
           )}
           <Link href={`/admin/${key}/new`} className="inline-flex items-center gap-1.5 rounded-lg bg-navy-900 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-navy-800">
-            <IPlus size={16} className="text-gold-300" /> Add {e.singular.toLowerCase()}
+            <IPlus size={16} className="text-accent" /> Add {e.singular.toLowerCase()}
           </Link>
         </div>
       </div>
@@ -72,7 +72,7 @@ export default async function EntityList({ params, searchParams }: Props) {
             return (
               <Link key={t.label} href={tabHref(t.s)} aria-current={on ? "page" : undefined}
                 className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${on ? "bg-white text-navy-900 shadow-sm" : "text-slate-600 hover:text-navy-900"}`}>
-                {t.label} <span className={`ml-1 text-xs ${on ? "text-gold-700" : "text-slate-400"}`}>{t.n}</span>
+                {t.label} <span className={`ml-1 text-xs ${on ? "text-accent" : "text-slate-400"}`}>{t.n}</span>
               </Link>
             );
           })}
@@ -99,7 +99,7 @@ export default async function EntityList({ params, searchParams }: Props) {
               const title = (r[e.titleField] as string) || "(untitled)";
               const thumb = imageField ? (r[imageField] as string | null) : null;
               return (
-                <tr key={r.id as string} className="group relative transition hover:bg-gold-300/10">
+                <tr key={r.id as string} className="group relative transition hover:bg-accent/10">
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-3">
                       {imageField && (thumb

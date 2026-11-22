@@ -9,7 +9,7 @@ export default function NotFound() {
       <p className="eyebrow">404</p>
       <h1 className="display mt-3 text-5xl text-navy-900">Page not found</h1>
       <p className="mt-4 text-muted">The page you're looking for doesn't exist or has moved.</p>
-      <Link href="/" className="btn btn-gold mt-8">Back to home</Link>
+      <Link href="/" className="btn btn-primary mt-8">Back to home</Link>
     </main>
   );
 }

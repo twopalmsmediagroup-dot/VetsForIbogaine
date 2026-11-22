@@ -23,13 +23,13 @@ export default async function ConsortiumPage() {
               <li key={a.id}>
                 <Link href={`/consortium/${a.slug}`} className="group flex h-full flex-col bg-white p-7 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-lg">
                   <div className="flex items-center justify-between">
-                    <Icon className="text-gold-600" />
+                    <Icon className="text-accent" />
                     <span className="display text-3xl text-line">{String(i + 1).padStart(2, "0")}</span>
                   </div>
                   <h2 className="display mt-4 text-2xl text-navy-900">{a.title}</h2>
-                  <p className="mt-1 text-xs font-bold tracking-[0.12em] uppercase text-gold-700">{a.eyebrow}</p>
+                  <p className="mt-1 text-xs font-bold tracking-[0.12em] uppercase text-accent">{a.eyebrow}</p>
                   <p className="mt-3 text-sm leading-relaxed text-ink/90">{a.summary}</p>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 group-hover:text-gold-700">Explore <ArrowRight /></span>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 group-hover:text-accent">Explore <ArrowRight /></span>
                 </Link>
               </li>
             );

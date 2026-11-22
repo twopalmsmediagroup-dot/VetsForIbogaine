@@ -29,19 +29,19 @@ export default function StoriesCarousel({ stories }: { stories: VeteranStory[] }
                   <Image src={s.photo_url} alt={`Photo of ${s.name}`} fill sizes="340px" className="object-cover" />
                 ) : (
                   <div className="neural-bg flex h-full items-center justify-center">
-                    <span className="display text-6xl text-gold-400/80">{s.name.trim().charAt(0)}</span>
+                    <span className="display text-6xl text-accent-soft/80">{s.name.trim().charAt(0)}</span>
                   </div>
                 )}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 via-navy-950/50 to-transparent p-4 pt-12 text-white">
+                <div className="on-dark absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 via-navy-950/50 to-transparent p-4 pt-12 text-white">
                   <h3 className="display text-2xl leading-tight">{s.name}</h3>
-                  {s.service && <p className="mt-1 text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-gold-300">{s.service}</p>}
+                  {s.service && <p className="mt-1 text-[0.68rem] font-semibold tracking-[0.12em] uppercase text-accent">{s.service}</p>}
                 </div>
               </div>
               <div className="flex flex-1 flex-col p-5">
-                {s.quote && <p className="display text-lg leading-snug text-gold-700">“{s.quote.replace(/^["“]|["”]$/g, "")}”</p>}
+                {s.quote && <p className="display text-lg leading-snug text-accent">“{s.quote.replace(/^["“]|["”]$/g, "")}”</p>}
                 {s.short_bio && <p className={`text-sm leading-relaxed text-ink/90 ${s.quote ? "mt-3" : ""}`}>{s.short_bio}</p>}
                 {s.full_story && (
-                  <Link href={`/stories/${s.slug}`} className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 hover:text-gold-700">
+                  <Link href={`/stories/${s.slug}`} className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-bold tracking-[0.14em] uppercase text-navy-800 hover:text-accent">
                     Read full story →<span className="sr-only"> from {s.name}</span>
                   </Link>
                 )}

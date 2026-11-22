@@ -12,14 +12,14 @@ export default async function OgImage() {
   const src = `data:image/png;base64,${mark.toString("base64")}`;
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", gap: 48, padding: "0 70px", background: "linear-gradient(135deg, #07152a 0%, #0b1d36 55%, #12294a 100%)", color: "#fff" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", gap: 48, padding: "0 70px", background: "linear-gradient(135deg, #071a3a 0%, #0a2350 55%, #123170 100%)", color: "#fff" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src} width={216} height={240} alt="" />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 66, fontWeight: 700, letterSpacing: 1 }}>
-            <span>VETS FOR&nbsp;</span><span style={{ color: "#d6b464" }}>IBOGAINE</span>
+            <span>VETS FOR&nbsp;</span><span style={{ color: "#ffffff" }}>IBOGAINE</span>
           </div>
-          <div style={{ marginTop: 18, fontSize: 22, letterSpacing: 4, color: "#e2c98a" }}>ADVOCACY • COLLABORATION • EDUCATION</div>
+          <div style={{ marginTop: 18, fontSize: 22, letterSpacing: 4, color: "#b9c7e3" }}>ADVOCACY • COLLABORATION • EDUCATION</div>
           <div style={{ marginTop: 34, fontSize: 30, color: "rgba(255,255,255,0.85)", maxWidth: 680 }}>
             Informed veterans. Better options.
           </div>

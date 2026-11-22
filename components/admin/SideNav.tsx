@@ -16,7 +16,7 @@ export default function SideNav({ groups }: { groups: NavGroup[] }) {
     <nav aria-label="Dashboard" className="flex gap-1 overflow-x-auto px-3 pb-3 lg:block lg:space-y-5 lg:overflow-visible lg:px-3 lg:pb-0">
       {groups.map((g, gi) => (
         <div key={gi} className="contents lg:block">
-          {g.title && <p className="hidden px-3 pb-1.5 text-[0.65rem] font-semibold tracking-[0.16em] text-gold-400/80 uppercase lg:block">{g.title}</p>}
+          {g.title && <p className="hidden px-3 pb-1.5 text-[0.65rem] font-semibold tracking-[0.16em] text-accent-soft/80 uppercase lg:block">{g.title}</p>}
           <ul className="contents lg:block lg:space-y-0.5">
             {g.items.map((n) => {
               const Icon = ICONS[n.icon] ?? IHome;
@@ -27,11 +27,11 @@ export default function SideNav({ groups }: { groups: NavGroup[] }) {
                     className={`group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm whitespace-nowrap transition ${
                       on ? "bg-white/10 font-semibold text-white" : "text-white/75 hover:bg-white/5 hover:text-white"
                     }`}>
-                    {on && <span className="absolute inset-y-1.5 left-0 hidden w-[3px] rounded-r bg-gold-400 lg:block" aria-hidden="true" />}
-                    <Icon className={on ? "text-gold-300" : "text-white/55 group-hover:text-gold-300"} />
+                    {on && <span className="absolute inset-y-1.5 left-0 hidden w-[3px] rounded-r bg-accent-soft lg:block" aria-hidden="true" />}
+                    <Icon className={on ? "text-accent" : "text-white/55 group-hover:text-accent"} />
                     <span>{n.label}</span>
                     {!!n.badge && (
-                      <span className="ml-auto rounded-full bg-gold-400 px-1.5 py-px text-[0.7rem] font-bold text-navy-950" aria-label={`${n.badge} new`}>{n.badge}</span>
+                      <span className="ml-auto rounded-full bg-accent-soft px-1.5 py-px text-[0.7rem] font-bold text-navy-950" aria-label={`${n.badge} new`}>{n.badge}</span>
                     )}
                   </Link>
                 </li>

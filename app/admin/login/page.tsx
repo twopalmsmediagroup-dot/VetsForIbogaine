@@ -4,14 +4,14 @@ import Notice from "@/components/admin/Notice";
 
 export default async function Login({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
   const sp = await searchParams;
-  const input = "w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm shadow-sm focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-gold-400/40";
+  const input = "w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm shadow-sm focus:border-navy-700 focus:outline-none focus:ring-2 focus:ring-accent-soft/40";
   return (
-    <main id="main" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700 px-4 py-12">
-      <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(#e2c98a 1px, transparent 1px)", backgroundSize: "22px 22px" }} aria-hidden="true" />
-      <div className="relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-gold-400/30">
+    <main id="main" className="on-dark relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-700 px-4 py-12">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(#b9c7e3 1px, transparent 1px)", backgroundSize: "22px 22px" }} aria-hidden="true" />
+      <div className="on-light relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-accent-soft/30">
         <div className="flex flex-col items-center text-center">
           <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-16 w-auto" />
-          <h1 className="mt-3 font-[family-name:var(--font-mark)] text-lg font-bold tracking-wide text-navy-900">VETS FOR <span className="gold-text">IBOGAINE</span></h1>
+          <h1 className="mt-3 font-[family-name:var(--font-mark)] text-lg font-bold tracking-wide text-navy-900">VETS FOR <span className="accent-text">IBOGAINE</span></h1>
           <p className="text-sm text-slate-500">Website dashboard</p>
         </div>
         <div className="mt-6"><Notice sp={sp} /></div>

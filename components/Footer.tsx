@@ -17,25 +17,25 @@ const COLS = [
 
 export default function Footer({ s }: { s: Settings }) {
   return (
-    <footer className="border-t-2 border-gold-500/70 bg-paper-2 text-navy-800">
+    <footer className="border-t-2 border-accent/70 bg-paper-2 text-navy-800">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-8 px-4 py-10 sm:grid-cols-3 sm:px-6 sm:py-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_auto] lg:px-8">
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
           <Link href="/" className="flex items-center gap-3" aria-label="Vets for Ibogaine — home">
             <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-16 w-auto drop-shadow-[0_2px_6px_rgba(11,29,54,0.18)]" />
             <span className="font-[family-name:var(--font-mark)] text-xl font-bold tracking-[0.04em]">
-              <span className="text-navy-900">VETS FOR </span><span className="gold-text">IBOGAINE</span>
+              <span className="text-navy-900">VETS FOR </span><span className="accent-text">IBOGAINE</span>
             </span>
           </Link>
-          <p className="mt-3 text-[0.62rem] font-semibold tracking-[0.2em] uppercase text-gold-700">{s.tagline || "Advocacy • Collaboration • Education"}</p>
+          <p className="mt-3 text-[0.62rem] font-semibold tracking-[0.2em] uppercase text-accent">{s.tagline || "Advocacy • Collaboration • Education"}</p>
           <p className="display mt-4 max-w-xs text-xl text-navy-900">{s.footer_tagline || "Informed veterans. Better options."}</p>
-          {s.contact_email && <a href={`mailto:${s.contact_email}`} className="mt-3 inline-block text-sm font-medium text-navy-700 underline decoration-gold-500/60 underline-offset-4 hover:text-gold-700">{s.contact_email}</a>}
+          {s.contact_email && <a href={`mailto:${s.contact_email}`} className="mt-3 inline-block text-sm font-medium text-navy-700 underline decoration-accent/60 underline-offset-4 hover:text-accent">{s.contact_email}</a>}
         </div>
         {COLS.map((c) => (
           <nav key={c.title} aria-label={c.title}>
-            <h2 className="text-xs font-bold tracking-[0.16em] text-gold-700 uppercase">{c.title}</h2>
+            <h2 className="text-xs font-bold tracking-[0.16em] text-accent uppercase">{c.title}</h2>
             <ul className="mt-3 space-y-2 text-sm">
               {c.links.map(([label, href]) => (
-                <li key={href}><Link href={href} className="text-navy-800 hover:text-gold-700">{label}</Link></li>
+                <li key={href}><Link href={href} className="text-navy-800 hover:text-accent">{label}</Link></li>
               ))}
             </ul>
           </nav>
@@ -45,13 +45,13 @@ export default function Footer({ s }: { s: Settings }) {
           <ul className="flex gap-4">
             {SOCIAL.filter((x) => s[x.key]).map((x) => (
               <li key={x.key}>
-                <a href={s[x.key]!} target="_blank" rel="noopener noreferrer" aria-label={x.label} className="text-navy-800 hover:text-gold-700">
+                <a href={s[x.key]!} target="_blank" rel="noopener noreferrer" aria-label={x.label} className="text-navy-800 hover:text-accent">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={x.path} /></svg>
                 </a>
               </li>
             ))}
           </ul>
-          {s.donate_url && <a href={s.donate_url} className="btn btn-gold justify-center" target="_blank" rel="noopener noreferrer">Donate</a>}
+          {s.donate_url && <a href={s.donate_url} className="btn btn-primary justify-center" target="_blank" rel="noopener noreferrer">Donate</a>}
         </div>
         )}
       </div>

@@ -17,7 +17,7 @@ export default async function StoriesSection() {
                 <p className="display text-2xl text-navy-900">Be one of the first voices here.</p>
                 <p className="mt-1 max-w-xl text-sm text-muted">We&apos;re gathering the first veteran stories now. Share yours with a photo and a short bio — we review every submission and only publish with your permission.</p>
               </div>
-              <Link href="/contact?type=story" className="btn btn-gold shrink-0 justify-center">Share your story</Link>
+              <Link href="/contact?type=story" className="btn btn-primary shrink-0 justify-center">Share your story</Link>
             </div>
           )}
         </div>

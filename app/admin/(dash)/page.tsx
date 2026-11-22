@@ -72,12 +72,12 @@ export default async function Overview() {
   return (
     <div className="mx-auto max-w-6xl space-y-8">
       {/* Welcome banner */}
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 p-6 text-white shadow-lg sm:p-8">
-        <div className="pointer-events-none absolute -top-20 -right-16 h-64 w-64 rounded-full bg-gold-400/20 blur-3xl" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(#e2c98a 1px, transparent 1px)", backgroundSize: "20px 20px" }} aria-hidden="true" />
+      <section className="on-dark relative overflow-hidden rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 p-6 text-white shadow-lg sm:p-8">
+        <div className="pointer-events-none absolute -top-20 -right-16 h-64 w-64 rounded-full bg-accent-soft/20 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(#b9c7e3 1px, transparent 1px)", backgroundSize: "20px 20px" }} aria-hidden="true" />
         <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-[0.18em] text-gold-300 uppercase">
+            <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
               {new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "America/Los_Angeles" })}
             </p>
             <h1 className="mt-2 font-display text-3xl sm:text-4xl">{greeting()}{firstName(me?.email) ? `, ${firstName(me?.email)}` : ""}.</h1>
@@ -88,10 +88,10 @@ export default async function Overview() {
           <div className="flex flex-wrap gap-2">
             {quick.map((q) => (
               <Link key={q.href} href={q.href} className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-3.5 py-2 text-sm font-medium ring-1 ring-white/15 backdrop-blur transition hover:bg-white/20">
-                <IPlus size={15} className="text-gold-300" /> {q.label}
+                <IPlus size={15} className="text-accent" /> {q.label}
               </Link>
             ))}
-            <Link href="/" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-b from-gold-400 to-gold-500 px-3.5 py-2 text-sm font-semibold text-navy-950 shadow transition hover:brightness-105">
+            <Link href="/" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-b from-accent-soft to-accent px-3.5 py-2 text-sm font-semibold text-navy-950 shadow transition hover:brightness-105">
               View site <IExternal size={14} />
             </Link>
           </div>
@@ -100,8 +100,8 @@ export default async function Overview() {
 
       {/* Stats */}
       <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4" aria-label="At a glance">
-        <Link href="/admin/inbox" className={`${stat} group transition hover:ring-gold-400 ${newMessages ? "ring-2 ring-gold-400/70" : ""}`}>
-          <p className="flex items-center gap-2 text-xs font-semibold tracking-wide text-slate-500 uppercase"><IInbox size={15} className="text-gold-600" /> New messages</p>
+        <Link href="/admin/inbox" className={`${stat} group transition hover:ring-accent-soft ${newMessages ? "ring-2 ring-accent-soft/70" : ""}`}>
+          <p className="flex items-center gap-2 text-xs font-semibold tracking-wide text-slate-500 uppercase"><IInbox size={15} className="text-accent" /> New messages</p>
           <p className="mt-2 text-3xl font-bold text-navy-900">{newMessages}</p>
           <p className="mt-1 text-xs text-slate-500 group-hover:text-navy-800">Open inbox →</p>
         </Link>
@@ -130,7 +130,7 @@ export default async function Overview() {
             {(inbox.data ?? []).map((m) => (
               <li key={m.id}>
                 <Link href="/admin/inbox" className="flex items-center gap-3 px-5 py-3 transition hover:bg-slate-50">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-400/20 text-sm font-bold text-gold-700">{String(m.name)[0]?.toUpperCase()}</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-soft/20 text-sm font-bold text-accent">{String(m.name)[0]?.toUpperCase()}</span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-medium text-slate-900">New message from {m.name}</span>
                     <span className="block text-xs text-slate-500"><span className="capitalize">{m.inquiry_type === "story" ? "Veteran story submission" : m.inquiry_type}</span> · {timeAgo(m.created_at)}</span>
@@ -152,7 +152,7 @@ export default async function Overview() {
               </li>
             ))}
             {!newMessages && !draftList.length && (
-              <li className="flex items-center gap-3 px-5 py-8 text-sm text-slate-500"><ISpark className="text-gold-500" /> Nothing waiting on you right now.</li>
+              <li className="flex items-center gap-3 px-5 py-8 text-sm text-slate-500"><ISpark className="text-accent" /> Nothing waiting on you right now.</li>
             )}
           </ul>
         </section>
@@ -164,7 +164,7 @@ export default async function Overview() {
             <span className="text-sm text-slate-500">{doneCount} of {checklist.length}</span>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="Launch checklist progress">
-            <div className="h-full rounded-full bg-gradient-to-r from-gold-500 to-gold-400" style={{ width: `${pct}%` }} />
+            <div className="h-full rounded-full bg-gradient-to-r from-accent to-accent-soft" style={{ width: `${pct}%` }} />
           </div>
           <ul className="mt-4 space-y-1">
             {checklist.map((c) => {
@@ -197,9 +197,9 @@ export default async function Overview() {
           {perEntity.map(({ e, total, drafts: d }) => {
             const Icon = ENTITY_ICONS[e.key];
             return (
-              <div key={e.key} className="group relative flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-gold-400/70">
+              <div key={e.key} className="group relative flex flex-col rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200/80 transition hover:-translate-y-0.5 hover:shadow-md hover:ring-accent-soft/70">
                 <div className="flex items-start justify-between gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-900 text-gold-300 shadow-inner"><Icon size={20} /></span>
+                  <span className="flex h-10 w-10 items-center justify-center on-dark rounded-lg bg-navy-900 text-accent shadow-inner"><Icon size={20} /></span>
                   <Link href={`/admin/${e.key}/new`} className="relative z-10 inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-semibold text-navy-800 ring-1 ring-slate-200 transition hover:bg-navy-900 hover:text-white" aria-label={`Add ${e.singular.toLowerCase()}`}>
                     <IPlus size={13} /> Add
                   </Link>

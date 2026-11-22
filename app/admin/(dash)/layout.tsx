@@ -28,12 +28,12 @@ export default async function DashLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="lg:flex">
-      <aside className="bg-gradient-to-b from-navy-900 to-navy-950 text-white lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:overflow-y-auto">
+      <aside className="on-dark bg-gradient-to-b from-navy-900 to-navy-950 text-white lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:overflow-y-auto">
         <Link href="/admin" className="flex items-center gap-3 px-5 py-5">
-          <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-10 w-auto drop-shadow-[0_0_14px_rgba(214,180,100,0.35)]" />
+          <Image src="/brand/brain-mark.png" alt="" width={541} height={600} className="h-10 w-auto drop-shadow-[0_0_14px_rgba(185,199,227,0.25)]" />
           <span className="leading-tight">
             <span className="block font-[family-name:var(--font-mark)] text-[0.82rem] font-bold tracking-[0.04em] whitespace-nowrap">
-              VETS FOR <span className="gold-text">IBOGAINE</span>
+              VETS FOR <span className="accent-text">IBOGAINE</span>
             </span>
             <span className="block text-[0.7rem] tracking-[0.14em] text-white/55 uppercase">Dashboard</span>
           </span>
@@ -41,7 +41,7 @@ export default async function DashLayout({ children }: { children: React.ReactNo
         {staff && <SideNav groups={groups} />}
         <div className="mt-auto hidden border-t border-white/10 p-4 lg:block">
           <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold-400/90 text-sm font-bold text-navy-950">{initial}</span>
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-soft/90 text-sm font-bold text-navy-950">{initial}</span>
             <div className="min-w-0 text-xs">
               <p className="truncate text-white/90">{user?.email}</p>
               <p className="text-white/50 capitalize">{user?.role}</p>

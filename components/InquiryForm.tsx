@@ -4,7 +4,7 @@ import { submitInquiry, type FormState } from "@/app/actions";
 import { browserClient } from "@/lib/supabase/browser";
 import { ArrowRight } from "./Icons";
 
-const field = "mt-1 w-full rounded-[2px] border border-line bg-white px-4 py-3 text-sm text-ink focus:border-gold-500";
+const field = "mt-1 w-full rounded-[2px] border border-line bg-white px-4 py-3 text-sm text-ink focus:border-accent";
 const MAX_WORDS = 150;
 const countWords = (s: string) => (s.trim() ? s.trim().split(/\s+/).length : 0);
 
@@ -61,7 +61,7 @@ export default function InquiryForm({ defaultType = "general" }: { defaultType?:
   }
 
   if (state?.ok) {
-    return <div role="status" className="border-l-2 border-gold-500 bg-white p-6 text-navy-900">{state.message}</div>;
+    return <div role="status" className="border-l-2 border-accent bg-white p-6 text-navy-900">{state.message}</div>;
   }
   return (
     <form action={action} onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
@@ -140,7 +140,7 @@ export default function InquiryForm({ defaultType = "general" }: { defaultType?:
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted">Please don&apos;t share personal medical information beyond what you&apos;re comfortable publishing. We can&apos;t provide medical advice or treatment referrals.</p>
-        <button type="submit" disabled={pending || uploading} className="btn btn-gold shrink-0 justify-center disabled:opacity-60">
+        <button type="submit" disabled={pending || uploading} className="btn btn-primary shrink-0 justify-center disabled:opacity-60">
           {pending ? "Sending…" : isStory ? "Submit my story" : "Send message"} <ArrowRight />
         </button>
       </div>

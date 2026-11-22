@@ -4,7 +4,7 @@ import { External } from "./Icons";
 
 export function RelationshipBadge({ r }: { r: Organization["relationship"] }) {
   return r === "confirmed_partner" ? (
-    <span className="inline-flex items-center gap-1 rounded-full bg-gold-500/15 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.12em] uppercase text-gold-700 ring-1 ring-gold-500/40">
+    <span className="inline-flex items-center gap-1 rounded-full bg-accent/15 px-2.5 py-1 text-[0.62rem] font-bold tracking-[0.12em] uppercase text-accent ring-1 ring-accent/40">
       <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z" /></svg>
       Confirmed Partner
     </span>
@@ -31,7 +31,7 @@ export default function OrgCard({ o }: { o: Organization }) {
       <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-muted">
         <span>{o.location}</span>
         {o.website && (
-          <a href={o.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-navy-700 hover:text-gold-700">
+          <a href={o.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-navy-700 hover:text-accent">
             Website <External /><span className="sr-only"> for {o.name}</span>
           </a>
         )}

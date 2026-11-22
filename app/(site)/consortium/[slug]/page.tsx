@@ -35,7 +35,7 @@ export default async function AreaPage({ params }: Props) {
           <Markdown>{body}</Markdown>
 
           {empty && (
-            <div className="mt-8 border border-dashed border-gold-500/60 bg-white p-6">
+            <div className="mt-8 border border-dashed border-accent/60 bg-white p-6">
               <p className="display text-2xl text-navy-900">We&apos;re building this collection.</p>
               <p className="mt-2 text-sm text-muted">We&apos;re still gathering credible research, reporting and organizations for {p.title.toLowerCase()}. Know of a study, article or organization that belongs here?</p>
               <Link href="/contact?type=general" className="btn btn-outline mt-5">Suggest a resource <ArrowRight /></Link>
@@ -50,7 +50,7 @@ export default async function AreaPage({ params }: Props) {
                   <li key={r.id} className="py-4">
                     <p className="eyebrow !text-[0.62rem]">{r.resource_type}{r.published_date ? ` · ${formatDate(r.published_date)}` : ""}</p>
                     <h3 className="mt-1 text-lg font-semibold text-navy-900">
-                      {r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-gold-700">{r.title} <External /></a> : r.title}
+                      {r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-accent">{r.title} <External /></a> : r.title}
                     </h3>
                     {r.description && <p className="mt-1 text-sm text-muted">{r.description}</p>}
                     {r.citation && <p className="mt-1 text-xs italic text-muted">{r.citation}</p>}
@@ -66,7 +66,7 @@ export default async function AreaPage({ params }: Props) {
               <ul className="mt-4 grid gap-6 sm:grid-cols-2">
                 {articles.map((a) => <li key={a.id}><ArticleCard a={a} /></li>)}
               </ul>
-              {articles.length >= 6 && <Link href={`/news?area=${slug}`} className="mt-4 inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-navy-800 uppercase hover:text-gold-700">All articles in this area <ArrowRight /></Link>}
+              {articles.length >= 6 && <Link href={`/news?area=${slug}`} className="mt-4 inline-flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-navy-800 uppercase hover:text-accent">All articles in this area <ArrowRight /></Link>}
             </section>
           )}
 
@@ -83,9 +83,9 @@ export default async function AreaPage({ params }: Props) {
           <div className="bg-navy-900 p-6 text-white on-dark">
             <p className="eyebrow">Get Involved</p>
             <p className="mt-3 text-sm text-white/90">Is your organization working in this area? Connect with the consortium.</p>
-            <Link href="/contact?type=join" className="btn btn-gold mt-5 w-full justify-center">Join the Consortium</Link>
+            <Link href="/contact?type=join" className="btn btn-primary mt-5 w-full justify-center">Join the Consortium</Link>
           </div>
-          <div className="border-l-2 border-gold-500 bg-white p-5 text-xs leading-relaxed text-muted">
+          <div className="border-l-2 border-accent bg-white p-5 text-xs leading-relaxed text-muted">
             {s.disclaimer_short} <Link href="/medical-disclaimer" className="underline">Read the full disclaimer.</Link>
           </div>
         </aside>
@@ -100,9 +100,9 @@ export default async function AreaPage({ params }: Props) {
                 const Icon = AREA_ICONS[a.icon || "book"] || Book;
                 return (
                   <li key={a.id}>
-                    <Link href={`/consortium/${a.slug}`} className="group flex h-full flex-col items-start gap-2 bg-white p-4 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-md hover:ring-gold-500/60">
-                      <Icon size={26} className="text-gold-600" />
-                      <span className="text-sm font-semibold leading-snug text-navy-900 group-hover:text-gold-700">{a.title}</span>
+                    <Link href={`/consortium/${a.slug}`} className="group flex h-full flex-col items-start gap-2 bg-white p-4 ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-md hover:ring-accent/60">
+                      <Icon size={26} className="text-accent" />
+                      <span className="text-sm font-semibold leading-snug text-navy-900 group-hover:text-accent">{a.title}</span>
                     </Link>
                   </li>
                 );

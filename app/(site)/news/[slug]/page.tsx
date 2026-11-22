@@ -37,13 +37,14 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <header className="on-dark neural-bg text-white">
+      <header className="border-b border-line bg-white">
         <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 md:py-14">
-          <Link href="/news" className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85 hover:text-gold-300">← All articles</Link>
+          <Link href="/news" className="text-xs font-semibold tracking-[0.14em] uppercase text-muted hover:text-accent">← All articles</Link>
           <p className="eyebrow mt-6">{ARTICLE_TYPE_LABELS[a.article_type]}</p>
-          <h1 className="display mt-3 text-4xl sm:text-5xl">{a.title}</h1>
-          {a.excerpt && <p className="mt-5 text-lg text-white/90">{a.excerpt}</p>}
-          <p className="mt-6 text-sm text-white/60">{[a.author, formatDate(a.published_at)].filter(Boolean).join(" · ")}</p>
+          <h1 className="display mt-3 text-4xl text-navy-900 sm:text-5xl">{a.title}</h1>
+          <span className="title-rule mt-6" aria-hidden="true" />
+          {a.excerpt && <p className="mt-6 text-lg text-muted">{a.excerpt}</p>}
+          <p className="mt-5 text-sm font-medium text-muted">{[a.author, formatDate(a.published_at)].filter(Boolean).join(" · ")}</p>
         </div>
       </header>
       {a.cover_image_url && (
@@ -62,7 +63,7 @@ export default async function ArticlePage({ params }: Props) {
             <Markdown className="mt-4 !text-sm">{a.references_md}</Markdown>
           </section>
         )}
-        <p className="mt-8 border-l-2 border-gold-500 bg-white p-5 text-xs leading-relaxed text-muted">
+        <p className="mt-8 border-l-2 border-accent bg-white p-5 text-xs leading-relaxed text-muted">
           This article is for educational purposes only and is not medical advice. {s.disclaimer_short} <Link href="/medical-disclaimer" className="underline">Medical disclaimer</Link>.
         </p>
       </div>
